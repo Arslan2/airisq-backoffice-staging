@@ -3,6 +3,7 @@ import Login from 'views/Login/';
 import Home from 'views/Home/';
 
 import { RouteObject } from 'react-router-dom';
+import Clients from 'views/Clients';
 
 const appRoutes: Array<RouteObject> = [
   {
@@ -13,5 +14,9 @@ const appRoutes: Array<RouteObject> = [
     path: '/login',
     element: <Login />,
   },
+  {
+    path: '/client-list',
+    element: <Clients />
+  }
 ];
 export default appRoutes;

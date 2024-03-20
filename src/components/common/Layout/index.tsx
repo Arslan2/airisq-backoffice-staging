@@ -37,6 +37,9 @@ function Header() {
             <div className="hidden md:flex space-x-4">
               <Link to="/">Home</Link>
             </div>
+            <div className="hidden md:flex space-x-4">
+              <Link to="/client-list">Clients</Link>
+            </div>
           </div>
           <div className="hidden md:flex space-x-4 items-center">
             <Link to="/login">Login</Link>
