@@ -75,8 +75,11 @@ baseConfig = {
         removeRedundantAttributes: true,
       },
     }),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin(),    
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };
 
 module.exports = (env) => {

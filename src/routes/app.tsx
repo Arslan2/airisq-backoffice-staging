@@ -7,7 +7,7 @@ import Clients from 'views/Clients';
 
 const appRoutes: Array<RouteObject> = [
   {
-    path: '/',
+    index: true,
     element: <Home />,
   },
   {
