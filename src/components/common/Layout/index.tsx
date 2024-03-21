@@ -1,44 +1,57 @@
-import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import LogoImage from "../../../assets/img/test-image.jpg";
+import SidebarLogo from "../../../assets/img/AirisQ-HiRes.png";
+import DashboardIcon from "../../../assets/img/dashboardIcon.png";
+import ClientsIcon from "../../../assets/img/clientsIcon.png";
+import ScheduleIcon from "../../../assets/img/scheduleIcon.png";
+import JobsIcon from "../../../assets/img/jobsIcon.png";
+import MessagesIcon from "../../../assets/img/messagesIcon.png";
+import SettingsIcon from "../../../assets/img/settingsIcon.png";
+import SidebarArrowIcon from "../../../assets/img/SidebarArrowIcon.png";
+
+interface SidebarProps {
+  sidebarExpanded: boolean;
+  setSidebarExpanded: Function;
+}
 
 function Layout() {
+  const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(true);
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <div className="flex">
+        <Sidebar
+          sidebarExpanded={sidebarExpanded}
+          setSidebarExpanded={setSidebarExpanded}
+        />
+        <div
+          className={`flex-1 w-full min-h-screen z-0 ${
+            sidebarExpanded ? "ml-64" : "ml-20"
+          } duration-1000`}
+        >
+          <Header />
+          <Outlet />
+          {/* <Footer /> */}
+        </div>
+      </div>
     </>
   );
 }
 function Header() {
   const [mobileMenu, toggleMobileMenu] = useState(false);
   return (
-    <nav className="bg-gray-100">
+    <nav className="bg-white">
       <div className="py-4 px-4 mx-auto">
         <div className="flex justify-between">
           <div className="flex space-x-4 items-center">
-            <div className="flex space-x-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"
-                />
-              </svg>
-              <span className="text-bold" />
-            </div>
             <div className="hidden md:flex space-x-4">
-              <Link to="/">Home</Link>
+              <Link to="/">Dashboard</Link>
             </div>
             <div className="hidden md:flex space-x-4">
               <Link to="/client-list">Clients</Link>
+            </div>
+            <div className="hidden md:flex space-x-4">
+              <Link to="/login">Login</Link>
             </div>
           </div>
           <div className="hidden md:flex space-x-4 items-center">
@@ -49,6 +62,7 @@ function Header() {
             >
               Signup
             </Link>
+            <img className="rounded-full w-8 h-8" src={LogoImage} />
           </div>
           <button
             type="button"
@@ -90,7 +104,7 @@ function Header() {
             )}
           </button>
         </div>
-        <div className={`${mobileMenu ? '' : 'hidden'} md:hidden`}>
+        <div className={`${mobileMenu ? "" : "hidden"} md:hidden`}>
           <Link className="block" to="/">
             Home
           </Link>
@@ -115,4 +129,93 @@ function Footer() {
     </footer>
   );
 }
+
+function Sidebar(props: SidebarProps) {
+  return (
+    <div
+      className={`${
+        props.sidebarExpanded ? "w-64" : "w-20"
+      } bg-[#D8E2F2] text-white h-screen fixed py-8 duration-1000 z-10`}
+    >
+      <div className="flex flex-col items-center justify-start h-24">
+        <img
+          src={SidebarLogo}
+          alt="Airisq Logo"
+          className={`${
+            props.sidebarExpanded ? "" : "w-7 h-10"
+          } transition-[width] duration-1000`}
+        />
+      </div>
+      <div className="mt-5">
+        <DashboardRow
+          image={DashboardIcon}
+          title="Dashboard"
+          hidden={!props.sidebarExpanded}
+        />
+        <DashboardRow
+          image={ClientsIcon}
+          title="Clients"
+          selected={true}
+          hidden={!props.sidebarExpanded}
+        />
+        <DashboardRow
+          image={ScheduleIcon}
+          title="Schedule"
+          hidden={!props.sidebarExpanded}
+        />
+        <DashboardRow
+          image={JobsIcon}
+          title="Jobs"
+          hidden={!props.sidebarExpanded}
+        />
+        <DashboardRow
+          image={MessagesIcon}
+          title="Messaging"
+          hidden={!props.sidebarExpanded}
+        />
+        <DashboardRow
+          image={SettingsIcon}
+          title="Settings"
+          hidden={!props.sidebarExpanded}
+        />
+      </div>
+      <div className="absolute bottom-10 -right-6 z-20">
+        <button
+          className=""
+          onClick={() => props.setSidebarExpanded(!props.sidebarExpanded)}
+        >
+          <img
+            src={SidebarArrowIcon}
+            alt="icon"
+            className={`bg-[#E4E4E4] p-4 rounded-full ${
+              props.sidebarExpanded ? "" : "rotate-180"
+            } duration-500`}
+          />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function DashboardRow(props: any) {
+  return (
+    <div
+      className={`flex justify-between items-center h-12 p-6 ${
+        props.selected ? "bg-[#009DCC]" : ""
+      }`}
+    >
+      <div className="flex items-center gap-6 h-6">
+        <img src={props.image} alt="icon" className="w-3.5 h-3.5" />
+        <span
+          className={`text-base text-[#14137B] ${
+            props.hidden && "opacity-0"
+          } duration-500`}
+        >
+          {props.title}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default Layout;
