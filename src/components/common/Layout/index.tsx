@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import LogoImage from "../../../assets/img/test-image.jpg";
 import SidebarLogo from "../../../assets/img/AirisQ-HiRes.png";
 import DashboardIcon from "../../../assets/img/dashboardIcon.png";
@@ -9,6 +9,11 @@ import JobsIcon from "../../../assets/img/jobsIcon.png";
 import MessagesIcon from "../../../assets/img/messagesIcon.png";
 import SettingsIcon from "../../../assets/img/settingsIcon.png";
 import SidebarArrowIcon from "../../../assets/img/SidebarArrowIcon.png";
+import LogoutIcon from "../../../assets/img/logoutIcon.png";
+import NotificationIcon from "../../../assets/img/notificationIcon.png";
+import SearchIcon from "../../../assets/img/SearchIcon.png";
+import ChevronRightIcon from "../../../assets/img/chevronRightIcon.png";
+import ChevronLeftIcon from "../../../assets/img/chevronLeftIcon.png";
 
 interface SidebarProps {
   sidebarExpanded: boolean;
@@ -31,7 +36,7 @@ function Layout() {
         >
           <Header />
           <Outlet />
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </div>
     </>
@@ -45,24 +50,23 @@ function Header() {
         <div className="flex justify-between">
           <div className="flex space-x-4 items-center">
             <div className="hidden md:flex space-x-4">
-              <Link to="/">Dashboard</Link>
+              <span className="text-[#14137B]">
+                AirisQ Back Admin Dashboard
+              </span>
             </div>
-            <div className="hidden md:flex space-x-4">
-              <Link to="/client-list">Clients</Link>
-            </div>
-            <div className="hidden md:flex space-x-4">
-              <Link to="/login">Login</Link>
+            <div className="relative">
+              <input
+                placeholder="Search"
+                className="py-2 px-3 w-full bg-[#F0F5FD] rounded-full placeholder-[#14137B]"
+              />
+              <div className="absolute right-3 bottom-3">
+                <img src={SearchIcon} alt="icon" />
+              </div>
             </div>
           </div>
           <div className="hidden md:flex space-x-4 items-center">
-            <Link to="/login">Login</Link>
-            <Link
-              className="bg-green-400 p-2 rounded text-center text-white"
-              to="/login"
-            >
-              Signup
-            </Link>
-            <img className="rounded-full w-8 h-8" src={LogoImage} />
+            <img src={NotificationIcon} alt="icon" className="h-8 w-8" />
+            <img className="rounded-full w-10 h-10" src={LogoImage} />
           </div>
           <button
             type="button"
@@ -124,13 +128,31 @@ function Header() {
 }
 function Footer() {
   return (
-    <footer className="bg-gray-100 layout-footer">
-      <div className="max-w-6xl py-2 px-4">Footer</div>
+    <footer className="bg-white sticky bottom-0">
+      <div className="flex justify-between items-center p-5">
+        <div className="text-[#6C757D]">Showing 1 to 10 of 50 entries</div>
+        <div className="text-[#6C757D] flex items-center gap-2">
+          <span>Display </span>
+          <select className="border border-[#DFDFDF] bg-white p-2 rounded-lg">
+            <option>5</option>
+            <option selected>10</option>
+            <option>15</option>
+            <option>25</option>
+          </select>
+          <img src={ChevronLeftIcon} alt="icon" className="bg-[#DFDFDF] p-2" />
+          <span className="bg-[#009DCC] px-2 py-1 text-white rounded">1</span>
+          <span className="px-2 py-1">2</span>
+          <span className="px-2 py-1">3</span>
+          <span className="px-2 py-1">4</span>
+          <img src={ChevronRightIcon} alt="icon" className="bg-[#DFDFDF] p-2" />
+        </div>
+      </div>
     </footer>
   );
 }
 
 function Sidebar(props: SidebarProps) {
+  let {pathname} = useLocation();
   return (
     <div
       className={`${
@@ -151,35 +173,50 @@ function Sidebar(props: SidebarProps) {
           image={DashboardIcon}
           title="Dashboard"
           hidden={!props.sidebarExpanded}
+          redirectLink="/"
+          selected={pathname === "/"}
         />
         <DashboardRow
           image={ClientsIcon}
           title="Clients"
-          selected={true}
+          selected={pathname === "/client-list"}
           hidden={!props.sidebarExpanded}
+          redirectLink="/client-list"
         />
         <DashboardRow
           image={ScheduleIcon}
           title="Schedule"
           hidden={!props.sidebarExpanded}
+          redirectLink="#"
         />
         <DashboardRow
           image={JobsIcon}
           title="Jobs"
           hidden={!props.sidebarExpanded}
+          redirectLink="#"
         />
         <DashboardRow
           image={MessagesIcon}
           title="Messaging"
           hidden={!props.sidebarExpanded}
+          redirectLink="#"
         />
         <DashboardRow
           image={SettingsIcon}
           title="Settings"
           hidden={!props.sidebarExpanded}
+          redirectLink="#"
         />
       </div>
-      <div className="absolute bottom-10 -right-6 z-20">
+      <div className="absolute bottom-5 w-full">
+        <DashboardRow
+          image={LogoutIcon}
+          title="Logout"
+          hidden={!props.sidebarExpanded}
+          redirectLink="/login"
+        />
+      </div>
+      <div className="absolute bottom-16 -right-4 z-20">
         <button
           className=""
           onClick={() => props.setSidebarExpanded(!props.sidebarExpanded)}
@@ -187,7 +224,7 @@ function Sidebar(props: SidebarProps) {
           <img
             src={SidebarArrowIcon}
             alt="icon"
-            className={`bg-[#E4E4E4] p-4 rounded-full ${
+            className={`bg-[#E4E4E4] p-2 rounded-full ${
               props.sidebarExpanded ? "" : "rotate-180"
             } duration-500`}
           />
@@ -199,10 +236,10 @@ function Sidebar(props: SidebarProps) {
 
 function DashboardRow(props: any) {
   return (
-    <div
+    <Link to={props.redirectLink}
       className={`flex justify-between items-center h-12 p-6 ${
         props.selected ? "bg-[#009DCC]" : ""
-      }`}
+      } cursor-pointer hover:bg-[#009DCC]`}
     >
       <div className="flex items-center gap-6 h-6">
         <img src={props.image} alt="icon" className="w-3.5 h-3.5" />
@@ -214,7 +251,7 @@ function DashboardRow(props: any) {
           {props.title}
         </span>
       </div>
-    </div>
+    </Link>
   );
 }
 

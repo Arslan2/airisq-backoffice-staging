@@ -6,6 +6,7 @@ import ExcelIcon from "../../assets/img/excelIcon.png";
 import PdfIcon from "../../assets/img/pdfIcon.png";
 import EditIcon from "../../assets/img/editIcon.png";
 import DeleteIcon from "../../assets/img/deleteIcon.png";
+import SearchIcon from "../../assets/img/SearchIcon.png";
 
 export default function Clients() {
   const data = new Array(19).fill({
@@ -44,7 +45,13 @@ export default function Clients() {
             <img src={ExcelIcon} alt="icon" />
             <img src={WordIcon} alt="icon" />
             <img src={PdfIcon} alt="icon" />
-            <input placeholder="Search" className="py-2 px-3 w-2/3 bg-[#F0F5FD] rounded-full placeholder-[#14137B]" />
+            <input
+              placeholder="Search"
+              className="py-2 px-3 w-2/3 bg-[#F0F5FD] rounded-full placeholder-[#14137B] relative"
+            />
+            <div className="absolute right-16">
+              <img src={SearchIcon} alt="icon" />
+            </div>
           </div>
         </div>
         <hr className="h-0.5 border-t-0 bg-[#A5C9FF]" />
@@ -78,7 +85,10 @@ export default function Clients() {
             </thead>
             <tbody>
               {data.map((row, key) => (
-                <tr key={key} className="bg-white border-b border-[#A5c9FF] px-3">
+                <tr
+                  key={key}
+                  className="bg-white border-b border-[#A5c9FF] px-3"
+                >
                   <td className="px-6 py-4">
                     <span className="bg-blue-200 py-1 px-2 rounded-full">
                       {row.badge}
@@ -89,14 +99,28 @@ export default function Clients() {
                   <td className="px-6 py-4">{row.primaryContract}</td>
                   <td className="px-6 py-4">{row.sites}</td>
                   <td className="px-6 py-4 flex items-end gap-3">
-                    <div className="flex items-end gap-1"><img src={WordIcon} alt="icon" /> <span>(4)</span></div>
-                    <div className="flex items-end gap-1"><img src={PdfIcon} alt="icon" /> <span>(4)</span></div>
-                    <div className="flex items-end gap-1"><img src={ExcelIcon} alt="icon" /> <span>(4)</span></div>
+                    <div className="flex items-end gap-1">
+                      <img src={WordIcon} alt="icon" /> <span>(4)</span>
+                    </div>
+                    <div className="flex items-end gap-1">
+                      <img src={PdfIcon} alt="icon" /> <span>(4)</span>
+                    </div>
+                    <div className="flex items-end gap-1">
+                      <img src={ExcelIcon} alt="icon" /> <span>(4)</span>
+                    </div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
-                    <img src={EditIcon} alt="icon" className="bg-[#D8E2F2] p-1 rounded-lg" />
-                    <img src={DeleteIcon} alt="Icon" className="bg-[#D8E2F2] p-1 rounded-lg" />
+                      <img
+                        src={EditIcon}
+                        alt="icon"
+                        className="bg-[#D8E2F2] p-1 rounded-lg"
+                      />
+                      <img
+                        src={DeleteIcon}
+                        alt="Icon"
+                        className="bg-[#D8E2F2] p-1 rounded-lg"
+                      />
                     </div>
                   </td>
                 </tr>

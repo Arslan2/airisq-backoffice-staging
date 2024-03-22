@@ -5,6 +5,7 @@ import routes from './routes';
 
 const routers = createBrowserRouter([
   {
+    path: "/",
     element: <Layout />,
     children: routes,
   },
