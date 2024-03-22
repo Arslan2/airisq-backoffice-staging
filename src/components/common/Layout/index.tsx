@@ -140,7 +140,9 @@ function Footer() {
             <option>25</option>
           </select>
           <img src={ChevronLeftIcon} alt="icon" className="bg-gainsboro p-2" />
-          <span className="bg-pacific-blue px-2 py-1 text-white rounded">1</span>
+          <span className="bg-pacific-blue px-2 py-1 text-white rounded">
+            1
+          </span>
           <span className="px-2 py-1">2</span>
           <span className="px-2 py-1">3</span>
           <span className="px-2 py-1">4</span>
@@ -152,7 +154,7 @@ function Footer() {
 }
 
 function Sidebar(props: SidebarProps) {
-  let {pathname} = useLocation();
+  let { pathname } = useLocation();
   return (
     <div
       className={`${
@@ -183,6 +185,16 @@ function Sidebar(props: SidebarProps) {
           hidden={!props.sidebarExpanded}
           redirectLink="/client-list"
         />
+        {pathname === "/client-list" && props.sidebarExpanded ? (
+          <ul className="list-disc list-inside">
+            <li className="ml-10 px-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1">
+              Sites
+            </li>
+            <li className="ml-10 px-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1">
+              Contacts
+            </li>
+          </ul>
+        ) : null}
         <DashboardRow
           image={ScheduleIcon}
           title="Schedule"
@@ -236,7 +248,8 @@ function Sidebar(props: SidebarProps) {
 
 function DashboardRow(props: any) {
   return (
-    <Link to={props.redirectLink}
+    <Link
+      to={props.redirectLink}
       className={`flex justify-between items-center h-12 p-6 ${
         props.selected ? "bg-pacific-blue" : ""
       } cursor-pointer hover:bg-pacific-blue`}
