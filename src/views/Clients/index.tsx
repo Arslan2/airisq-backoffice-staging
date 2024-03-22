@@ -17,21 +17,21 @@ export default function Clients() {
     sites: "3",
   });
   return (
-    <div className="py-6 px-8 bg-[#FAFDFF]">
+    <div className="py-6 px-8 bg-alice-blue-50">
       <div className="flex justify-between items-center">
-        <div className="flex gap-5 text-[#14137B]">
+        <div className="flex gap-5 text-poster-blue">
           <h5 className="">Dashboard</h5>
           <h5 className="">Client List</h5>
         </div>
         <div>
-          <button className="bg-[#009DCC] text-white py-3 px-5 rounded-full">
+          <button className="bg-pacific-blue text-white py-3 px-5 rounded-full">
             Add New Client +
           </button>
         </div>
       </div>
-      <div className="mt-5 bg-white py-2 shadow-lg border border-[#A5C9FF] rounded-lg">
+      <div className="mt-5 bg-white py-2 shadow-lg border border-pale-cornflower-blue rounded-lg">
         <div className="flex items-center justify-between px-3 mb-5">
-          <div className="flex items-center text-[#14137B] gap-5">
+          <div className="flex items-center text-poster-blue gap-5">
             <div className="flex items-center gap-2">
               <img src={ClientIcon} alt="icon" />
               Clients (799)
@@ -47,19 +47,19 @@ export default function Clients() {
             <img src={PdfIcon} alt="icon" />
             <input
               placeholder="Search"
-              className="py-2 px-3 w-2/3 bg-[#F0F5FD] rounded-full placeholder-[#14137B] relative"
+              className="py-2 px-3 w-2/3 bg-alice-blue rounded-full placeholder-poster-blue relative"
             />
             <div className="absolute right-16">
               <img src={SearchIcon} alt="icon" />
             </div>
           </div>
         </div>
-        <hr className="h-0.5 border-t-0 bg-[#A5C9FF]" />
+        <hr className="h-0.5 border-t-0 bg-pale-cornflower-blue" />
 
         <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left rtl:text-right text-[#14137B]">
+          <table className="w-full text-sm text-left rtl:text-right text-poster-blue">
             <thead className="text-xs text-gray-700 uppercase">
-              <tr className="px-3 py-5 border-b border-[#A5c9FF]">
+              <tr className="px-3 py-5 border-b border-pale-cornflower-blue">
                 <th scope="col" className="px-6 py-5">
                   Badge
                 </th>
@@ -87,7 +87,7 @@ export default function Clients() {
               {data.map((row, key) => (
                 <tr
                   key={key}
-                  className="bg-white border-b border-[#A5c9FF] px-3"
+                  className="bg-white border-b border-pale-cornflower-blue px-3"
                 >
                   <td className="px-6 py-4">
                     <span className="bg-blue-200 py-1 px-2 rounded-full">
@@ -114,12 +114,12 @@ export default function Clients() {
                       <img
                         src={EditIcon}
                         alt="icon"
-                        className="bg-[#D8E2F2] p-1 rounded-lg"
+                        className="bg-hawkes-blue p-1 rounded-lg"
                       />
                       <img
                         src={DeleteIcon}
                         alt="Icon"
-                        className="bg-[#D8E2F2] p-1 rounded-lg"
+                        className="bg-hawkes-blue p-1 rounded-lg"
                       />
                     </div>
                   </td>

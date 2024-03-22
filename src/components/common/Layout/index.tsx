@@ -50,14 +50,14 @@ function Header() {
         <div className="flex justify-between">
           <div className="flex space-x-4 items-center">
             <div className="hidden md:flex space-x-4">
-              <span className="text-[#14137B]">
+              <span className="text-poster-blue">
                 AirisQ Back Admin Dashboard
               </span>
             </div>
             <div className="relative">
               <input
                 placeholder="Search"
-                className="py-2 px-3 w-full bg-[#F0F5FD] rounded-full placeholder-[#14137B]"
+                className="py-2 px-3 w-full bg-alice-blue rounded-full placeholder-poster-blue"
               />
               <div className="absolute right-3 bottom-3">
                 <img src={SearchIcon} alt="icon" />
@@ -130,21 +130,21 @@ function Footer() {
   return (
     <footer className="bg-white sticky bottom-0">
       <div className="flex justify-between items-center p-5">
-        <div className="text-[#6C757D]">Showing 1 to 10 of 50 entries</div>
-        <div className="text-[#6C757D] flex items-center gap-2">
+        <div className="text-raven">Showing 1 to 10 of 50 entries</div>
+        <div className="text-raven flex items-center gap-2">
           <span>Display </span>
-          <select className="border border-[#DFDFDF] bg-white p-2 rounded-lg">
+          <select className="border border-gainsboro bg-white p-2 rounded-lg">
             <option>5</option>
             <option selected>10</option>
             <option>15</option>
             <option>25</option>
           </select>
-          <img src={ChevronLeftIcon} alt="icon" className="bg-[#DFDFDF] p-2" />
-          <span className="bg-[#009DCC] px-2 py-1 text-white rounded">1</span>
+          <img src={ChevronLeftIcon} alt="icon" className="bg-gainsboro p-2" />
+          <span className="bg-pacific-blue px-2 py-1 text-white rounded">1</span>
           <span className="px-2 py-1">2</span>
           <span className="px-2 py-1">3</span>
           <span className="px-2 py-1">4</span>
-          <img src={ChevronRightIcon} alt="icon" className="bg-[#DFDFDF] p-2" />
+          <img src={ChevronRightIcon} alt="icon" className="bg-gainsboro p-2" />
         </div>
       </div>
     </footer>
@@ -157,7 +157,7 @@ function Sidebar(props: SidebarProps) {
     <div
       className={`${
         props.sidebarExpanded ? "w-64" : "w-20"
-      } bg-[#D8E2F2] text-white h-screen fixed py-8 duration-1000 z-10`}
+      } bg-hawkes-blue text-white h-screen fixed py-8 duration-1000 z-10`}
     >
       <div className="flex flex-col items-center justify-start h-24">
         <img
@@ -224,7 +224,7 @@ function Sidebar(props: SidebarProps) {
           <img
             src={SidebarArrowIcon}
             alt="icon"
-            className={`bg-[#E4E4E4] p-2 rounded-full ${
+            className={`bg-whisper p-2 rounded-full ${
               props.sidebarExpanded ? "" : "rotate-180"
             } duration-500`}
           />
@@ -238,13 +238,13 @@ function DashboardRow(props: any) {
   return (
     <Link to={props.redirectLink}
       className={`flex justify-between items-center h-12 p-6 ${
-        props.selected ? "bg-[#009DCC]" : ""
-      } cursor-pointer hover:bg-[#009DCC]`}
+        props.selected ? "bg-pacific-blue" : ""
+      } cursor-pointer hover:bg-pacific-blue`}
     >
       <div className="flex items-center gap-6 h-6">
         <img src={props.image} alt="icon" className="w-3.5 h-3.5" />
         <span
-          className={`text-base text-[#14137B] ${
+          className={`text-base text-poster-blue ${
             props.hidden && "opacity-0"
           } duration-500`}
         >
