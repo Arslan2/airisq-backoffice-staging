@@ -74,7 +74,10 @@ export default function EditClient() {
           </div>
           <div className={`${colSpanClassInput} justify-between`}>
             <img src={PdfIcon} alt="icon" />
-            <button className="border w-24 h-7 px-1 flex items-center justify-between gap-3 border-poster-blue text-poster-blue">
+            <button
+              className="border w-24 h-7 px-1 flex items-center justify-between gap-3 border-poster-blue text-poster-blue"
+              aria-label="upload-button"
+            >
               Upload <img src={UploadIcon} alt="icon" />
             </button>
           </div>
