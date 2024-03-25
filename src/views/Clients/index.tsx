@@ -7,8 +7,12 @@ import PdfIcon from "../../assets/img/pdfIcon.png";
 import EditIcon from "../../assets/img/editIcon.png";
 import DeleteIcon from "../../assets/img/deleteIcon.png";
 import SearchIcon from "../../assets/img/SearchIcon.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Clients() {
+
+  const navigate = useNavigate();
+
   const data = new Array(19).fill({
     badge: "Attention",
     cName: "XYZ Hospital Trust",
@@ -114,6 +118,7 @@ export default function Clients() {
                       <img
                         src={EditIcon}
                         alt="icon"
+                        onClick={() => navigate('/client-list/edit/1')}
                         className="bg-hawkes-blue p-1 rounded-lg"
                       />
                       <img

@@ -22,6 +22,7 @@ interface SidebarProps {
 
 function Layout() {
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(true);
+  let { pathname } = useLocation();
   return (
     <>
       <div className="flex">
@@ -30,13 +31,13 @@ function Layout() {
           setSidebarExpanded={setSidebarExpanded}
         />
         <div
-          className={`flex-1 w-full min-h-screen z-0 ${
+          className={`flex-1 flex flex-col w-full min-h-screen z-0 ${
             sidebarExpanded ? "ml-64" : "ml-20"
           } duration-1000`}
         >
           <Header />
           <Outlet />
-          <Footer />
+          {pathname.includes("/client-list/edit") ? null : <Footer />}
         </div>
       </div>
     </>
@@ -181,11 +182,11 @@ function Sidebar(props: SidebarProps) {
         <DashboardRow
           image={ClientsIcon}
           title="Clients"
-          selected={pathname === "/client-list"}
+          selected={pathname.includes("/client-list")}
           hidden={!props.sidebarExpanded}
           redirectLink="/client-list"
         />
-        {pathname === "/client-list" && props.sidebarExpanded ? (
+        {pathname.includes("/client-list") && props.sidebarExpanded ? (
           <ul className="list-disc list-inside">
             <li className="ml-10 px-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1">
               Sites
