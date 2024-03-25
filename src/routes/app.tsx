@@ -5,6 +5,7 @@ import Home from "views/Home/";
 import { RouteObject } from "react-router-dom";
 import Clients from "views/Clients";
 import EditClient from "views/Clients/EditClient";
+import ClientOverview from "views/Clients/ClientOverview";
 
 const appRoutes: Array<RouteObject> = [
   {
@@ -22,6 +23,10 @@ const appRoutes: Array<RouteObject> = [
   {
     path: "/client-list/edit/:id",
     element: <EditClient />,
+  },
+  {
+    path: "/client-list/overview",
+    element: <ClientOverview />,
   },
 ];
 export default appRoutes;
