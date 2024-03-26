@@ -61,7 +61,7 @@ const ClientOverviewCard = () => {
           <div className="ml-6 my-3 text-sm">info@mbe-london.co.uk.</div>
         </div>
         <div className="mt-10 flex justify-center">
-          <button className="flex items-center gap-2 bg-hawkes-blue text-pacific-blue rounded-full p-3">
+          <button className="flex items-center gap-2 bg-hawkes-blue text-pacific-blue rounded-full p-3" aria-label="add-new-contact-btn">
             Add New Contact
             <img src={PlusIcon} alt="icon" />
           </button>
