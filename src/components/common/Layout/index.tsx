@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Outlet, useLocation, useOutletContext } from "react-router-dom";
 import LogoImage from "../../../assets/img/test-image.jpg";
 import SidebarLogo from "../../../assets/img/AirisQ-HiRes.png";
 import DashboardIcon from "../../../assets/img/dashboardIcon.png";
@@ -18,17 +18,38 @@ import ChevronLeftIcon from "../../../assets/img/chevronLeftIcon.png";
 interface SidebarProps {
   sidebarExpanded: boolean;
   setSidebarExpanded: Function;
+  sidebarOptions: {
+    dashboard: boolean;
+    client: boolean;
+    schedule: boolean;
+    jobs: boolean;
+    messaging: boolean;
+    settings: boolean;
+  };
 }
+
+type ContextType = {
+  setSidebarOptions: Function;
+};
 
 function Layout() {
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(true);
   let { pathname } = useLocation();
+  const [sidebarOptions, setSidebarOptions] = useState({
+    dashboard: true,
+    client: false,
+    schedule: false,
+    jobs: false,
+    messaging: false,
+    settings: false,
+  });
   return (
     <>
       <div className="flex">
         <Sidebar
           sidebarExpanded={sidebarExpanded}
           setSidebarExpanded={setSidebarExpanded}
+          sidebarOptions={sidebarOptions}
         />
         <div
           className={`flex-1 flex flex-col w-full min-h-screen z-0 ${
@@ -36,13 +57,18 @@ function Layout() {
           } duration-1000`}
         >
           <Header />
-          <Outlet />
-          {pathname.includes("/client-list/edit") ? null : <Footer />}
+          <Outlet context={{ setSidebarOptions } satisfies ContextType} />
+          {pathname === "/client-list" ? <Footer /> : null}
         </div>
       </div>
     </>
   );
 }
+
+export function useSidebarOptions() {
+  return useOutletContext<ContextType>();
+}
+
 function Header() {
   const [mobileMenu, toggleMobileMenu] = useState(false);
   return (
@@ -156,6 +182,30 @@ function Footer() {
 
 function Sidebar(props: SidebarProps) {
   let { pathname } = useLocation();
+  const [showDropdown, setShowDropdown] = useState({
+    client: props.sidebarOptions.client ? true : false,
+    messaging: false,
+    settings: false,
+  });
+
+  const handleShowHideDropdown = (name: string) => {
+    if (name === "client") {
+      setShowDropdown({ ...showDropdown, client: !showDropdown.client });
+    } else if (name === "messaging") {
+      setShowDropdown({ ...showDropdown, messaging: !showDropdown.messaging });
+    } else if (name === "settings") {
+      setShowDropdown({ ...showDropdown, settings: !showDropdown.settings });
+    }
+  };
+
+  useEffect(() => {
+    setShowDropdown({
+      client: props.sidebarOptions.client ? true : false,
+      messaging: false,
+      settings: false,
+    });
+  }, [props.sidebarOptions.client]);
+
   return (
     <div
       className={`${
@@ -177,16 +227,21 @@ function Sidebar(props: SidebarProps) {
           title="Dashboard"
           hidden={!props.sidebarExpanded}
           redirectLink="/"
-          selected={pathname === "/"}
+          selected={props.sidebarOptions.dashboard}
         />
         <DashboardRow
           image={ClientsIcon}
           title="Clients"
-          selected={pathname.includes("/client-list")}
+          selected={props.sidebarOptions.client}
           hidden={!props.sidebarExpanded}
           redirectLink="/client-list"
+          showDropdown={showDropdown}
+          setShowDropdown={handleShowHideDropdown}
+          dropdownOpen={showDropdown.client}
         />
-        {pathname.includes("/client-list") && props.sidebarExpanded ? (
+        {props.sidebarOptions.client &&
+        props.sidebarExpanded &&
+        showDropdown.client ? (
           <ul className="list-disc list-inside">
             <li className="ml-10 px-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1">
               Sites
@@ -201,24 +256,28 @@ function Sidebar(props: SidebarProps) {
           title="Schedule"
           hidden={!props.sidebarExpanded}
           redirectLink="#"
+          selected={props.sidebarOptions.schedule}
         />
         <DashboardRow
           image={JobsIcon}
           title="Jobs"
           hidden={!props.sidebarExpanded}
           redirectLink="#"
+          selected={props.sidebarOptions.jobs}
         />
         <DashboardRow
           image={MessagesIcon}
           title="Messaging"
           hidden={!props.sidebarExpanded}
           redirectLink="#"
+          selected={props.sidebarOptions.messaging}
         />
         <DashboardRow
           image={SettingsIcon}
           title="Settings"
           hidden={!props.sidebarExpanded}
           redirectLink="#"
+          selected={props.sidebarOptions.settings}
         />
       </div>
       <div className="absolute bottom-5 w-full">
@@ -255,15 +314,52 @@ function DashboardRow(props: any) {
         props.selected ? "bg-pacific-blue" : ""
       } cursor-pointer hover:bg-pacific-blue`}
     >
-      <div className="flex items-center gap-6 h-6">
-        <img src={props.image} alt="icon" className="w-3.5 h-3.5" />
-        <span
-          className={`text-base text-poster-blue ${
-            props.hidden && "opacity-0"
-          } duration-500`}
-        >
-          {props.title}
-        </span>
+      <div className="flex items-center justify-between gap-6 h-6 w-full">
+        <div className="flex items-center gap-6 w-full">
+          <img src={props.image} alt="icon" className="w-3.5 h-3.5" />
+          <span
+            className={`text-base text-poster-blue ${
+              props.hidden && "opacity-0"
+            } duration-500`}
+          >
+            {props.title}
+          </span>
+        </div>
+        {props.showDropdown ? (
+          <div onClick={() => props.setShowDropdown("client")}>
+            {props.dropdownOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="#14137B"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="#14137B"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                />
+              </svg>
+            )}
+          </div>
+        ) : null}
       </div>
     </Link>
   );

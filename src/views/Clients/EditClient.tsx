@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PdfIcon from "../../assets/img/pdfIcon.png";
 import UploadIcon from "../../assets/img/uploadDocIcon.png";
 import PlusIcon from "../../assets/img/plusIcon.png";
@@ -11,8 +11,11 @@ import AtIcon from "../../assets/img/atIcon.png";
 import PrimaryContactIcon from "../../assets/img/primaryContactIcon.png";
 import DocTypeIcon from "../../assets/img/DocTypeIcon.png";
 import RadioIcon from "../../assets/img/radioIcon.png";
+import { useSidebarOptions } from "components/common/Layout";
 
 export default function EditClient() {
+  const { setSidebarOptions } = useSidebarOptions();
+
   const gridClass = "grid grid-cols-12 border border-b-pale-cornflower-blue";
   const colSpanClass =
     "col-span-3 bg-hawkes-blue px-3 py-6 text-poster-blue capitalize flex items-center text-xs";
@@ -32,6 +35,17 @@ export default function EditClient() {
     contact_number: { value: "+44 20 7798 4097", icon: PhoneIcon },
     general_email: { value: "info@mbe-london.co.uk.", icon: AtIcon },
   };
+
+  useEffect(() => {
+    setSidebarOptions({
+      dashboard: false,
+      client: true,
+      schedule: false,
+      jobs: false,
+      messaging: false,
+      settings: false,
+    });
+  }, []);
 
   return (
     <div className="py-6 px-8 bg-alice-blue-50 flex-1 overflow-y-auto">
