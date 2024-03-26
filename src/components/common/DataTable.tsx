@@ -7,7 +7,7 @@ import DeleteIcon from "../../assets/img/deleteIcon.png";
 import { useNavigate } from "react-router-dom";
 
 interface DataTableProps {
-  header: string[];
+  header: { title: string; icon: string }[];
   data: {
     badge: string;
     client_name: string;
@@ -23,12 +23,15 @@ const DataTable = ({ data, header }: DataTableProps) => {
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm text-left rtl:text-right text-poster-blue">
-        <thead className="text-xs text-gray-700 uppercase">
+        <thead className="text-xs text-poster-blue capitalize">
           <tr className="px-3 py-5 border-b border-pale-cornflower-blue">
-            {header.map((title, index) => (
-            <th scope="col" className="px-6 py-5" key={index}>
-              {title}
-            </th>
+            {header.map((data, index) => (
+              <th scope="col" className="px-6 py-5 font-normal" key={index}>
+                <div className="flex items-center gap-2">
+                  <img src={data.icon} alt="icon" />
+                  {data.title}
+                </div>
+              </th>
             ))}
           </tr>
         </thead>

@@ -1,17 +1,20 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Menu, Transition } from "@headlessui/react";
+import React, { useEffect, useState } from "react";
 import { useSidebarOptions } from "components/common/Layout";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "../../assets/img/SearchIcon.png";
 import ClientIcon from "../../assets/img/clientsIcon.png";
-import DeleteIcon from "../../assets/img/deleteIcon.png";
-import EditIcon from "../../assets/img/editIcon.png";
 import ExcelIcon from "../../assets/img/excelIcon.png";
-import FilterIcon from "../../assets/img/filterIcon.png";
 import PdfIcon from "../../assets/img/pdfIcon.png";
 import WordIcon from "../../assets/img/wordIcon.png";
 import ClientsFilters from "components/Clients/ClientsFilters";
 import DataTable from "components/common/DataTable";
+import CityIcon from "../../assets/img/cityIconLight.png";
+import PrimaryContactIcon from "../../assets/img/primaryContactIconLight.png";
+import HomeIcon from "../../assets/img/homeIconLight.png";
+import AttachmentIcon from "../../assets/img/attachmentIconLight.png";
+import ActionIcon from "../../assets/img/actionIconLight.png";
+import ClientIconLight from "../../assets/img/clientIconLight.png";
+import BadgeIconLight from "../../assets/img/badgeIconLight.png";
 
 export default function Clients() {
   const navigate = useNavigate();
@@ -24,13 +27,34 @@ export default function Clients() {
   const [search, setSearch] = useState("");
 
   const tableHeader = [
-    "badge",
-    "client name",
-    "city",
-    "primary contract",
-    "number of sites",
-    "attachments",
-    "actions",
+    {
+      title: "badge",
+      icon: BadgeIconLight,
+    },
+    {
+      title: "client name",
+      icon: ClientIconLight,
+    },
+    {
+      title: "city",
+      icon: CityIcon,
+    },
+    {
+      title: "primary contract",
+      icon: PrimaryContactIcon,
+    },
+    {
+      title: "number of sites",
+      icon: HomeIcon,
+    },
+    {
+      title: "attachments",
+      icon: AttachmentIcon,
+    },
+    {
+      title: "actions",
+      icon: ActionIcon,
+    },
   ];
 
   const TD1 = new Array(5).fill({
