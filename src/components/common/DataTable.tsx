@@ -9,15 +9,21 @@ import { useNavigate } from "react-router-dom";
 interface DataTableProps {
   header: { title: string; icon: string }[];
   data: {
-    badge: string;
-    client_name: string;
-    city: string;
-    primary_contract: string;
-    sites: string;
+    badge?: string;
+    client_name?: string;
+    city?: string;
+    primary_contract?: string;
+    sites?: string;
+    job_type?: string;
+    site?: string;
+    status?: string;
+    invoiced?: string;
+    report_completed?: string;
   }[];
+  page: string;
 }
 
-const DataTable = ({ data, header }: DataTableProps) => {
+const DataTable = ({ data, header, page }: DataTableProps) => {
   const navigate = useNavigate();
 
   return (
@@ -40,32 +46,36 @@ const DataTable = ({ data, header }: DataTableProps) => {
             <tr
               key={key}
               className="bg-white border-b border-pale-cornflower-blue px-3"
-              onClick={() => navigate("/client-list/overview")}
+              onClick={() =>
+                navigate(page === "clients" ? "/client-list/overview" : "#")
+              }
             >
-              <td className="px-6 py-4 cursor-pointer">
-                <div
-                  className={`${
-                    row.badge === "Attention"
-                      ? "bg-[#EBF1FD] text-[#2080F7]"
-                      : "bg-[#FDEBEB] text-[#F72020]"
-                  } py-1 px-2 rounded-full inline-flex items-center gap-3`}
-                >
-                  <div
-                    className={`h-1.5 w-1.5 rounded-full ${
-                      row.badge === "Attention"
-                        ? "bg-[#2080F7]"
-                        : "bg-[#F72020]"
-                    }`}
-                  />
-                  {row.badge}
-                </div>
-              </td>
-              <td className="px-6 py-4 cursor-pointer">{row.client_name}</td>
-              <td className="px-6 py-4 cursor-pointer">{row.city}</td>
-              <td className="px-6 py-4 cursor-pointer">
-                {row.primary_contract}
-              </td>
-              <td className="px-6 py-4 cursor-pointer">{row.sites}</td>
+              {Object.keys(row).map((key, index) => (
+                <td className="px-6 py-4 cursor-pointer">
+                  {key === "badge" ? (
+                    <div
+                      className={`${
+                        row[key] === "Attention"
+                          ? "bg-[#EBF1FD] text-[#2080F7]"
+                          : "bg-[#FDEBEB] text-[#F72020]"
+                      } py-1 px-2 rounded-full inline-flex items-center gap-3`}
+                    >
+                      <div
+                        className={`h-1.5 w-1.5 rounded-full ${
+                          row[key] === "Attention"
+                            ? "bg-[#2080F7]"
+                            : "bg-[#F72020]"
+                        }`}
+                      />
+                      {row[key]}
+                    </div>
+                  ) : page === "jobs" && key === "status" ? (
+                    <JobStatus status={row[key]} />
+                  ) : (
+                    row[key]
+                  )}
+                </td>
+              ))}
               <td className="px-6 py-4 flex items-end gap-3 cursor-pointer">
                 <div className="flex items-end gap-1">
                   <img src={WordIcon} alt="icon" /> <span>(4)</span>
@@ -82,7 +92,9 @@ const DataTable = ({ data, header }: DataTableProps) => {
                   <img
                     src={EditIcon}
                     alt="icon"
-                    onClick={() => navigate("/client-list/edit/1")}
+                    onClick={() =>
+                      navigate(page === "clients" ? "/client-list/edit/1" : "#")
+                    }
                     className="bg-hawkes-blue p-1 rounded-lg cursor-pointer"
                   />
                   <img
@@ -96,6 +108,57 @@ const DataTable = ({ data, header }: DataTableProps) => {
           ))}
         </tbody>
       </table>
+    </div>
+  );
+};
+
+const JobStatus = ({ status }: { status: string }) => {
+  const background =
+    status === "Completed"
+      ? "bg-[#F0FFFC]"
+      : status === "Not Scheduled"
+      ? "bg-[#FDEBEB]"
+      : status === "On Hold"
+      ? "bg-[#FFF0DB]"
+      : status === "In Progress"
+      ? "bg-[#DBE2F2]"
+      : status === "Scheduled"
+      ? "bg-[#EBF1FD]"
+      : "";
+
+  const textColor =
+    status === "Completed"
+      ? "text-[#3DB39E]"
+      : status === "Not Scheduled"
+      ? "text-[#F72020]"
+      : status === "On Hold"
+      ? "text-[#F4A118]"
+      : status === "In Progress"
+      ? "text-[#13137A]"
+      : status === "Scheduled"
+      ? "text-[#2080F7]"
+      : "";
+
+  const dotBG =
+    status === "Completed"
+      ? "bg-[#3DB39E]"
+      : status === "Not Scheduled"
+      ? "bg-[#F72020]"
+      : status === "On Hold"
+      ? "bg-[#F4A118]"
+      : status === "In Progress"
+      ? "bg-[#13137A]"
+      : status === "Scheduled"
+      ? "bg-[#2080F7]"
+      : "";
+  return (
+    <div
+      className={`${
+        textColor + " " + background
+      } py-1 px-2 rounded-full inline-flex items-center gap-3`}
+    >
+      <div className={`h-1.5 w-1.5 rounded-full ${dotBG}`} />
+      {status}
     </div>
   );
 };

@@ -58,7 +58,9 @@ function Layout() {
         >
           <Header />
           <Outlet context={{ setSidebarOptions } satisfies ContextType} />
-          {pathname === "/client-list" ? <Footer /> : null}
+          {pathname === "/client-list" || pathname === "/jobs" ? (
+            <Footer />
+          ) : null}
         </div>
       </div>
     </>
@@ -262,7 +264,7 @@ function Sidebar(props: SidebarProps) {
           image={JobsIcon}
           title="Jobs"
           hidden={!props.sidebarExpanded}
-          redirectLink="#"
+          redirectLink="/jobs"
           selected={props.sidebarOptions.jobs}
         />
         <DashboardRow

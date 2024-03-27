@@ -6,6 +6,7 @@ import { RouteObject } from "react-router-dom";
 import Clients from "views/Clients";
 import EditClient from "views/Clients/EditClient";
 import ClientOverview from "views/Clients/ClientOverview";
+import Jobs from "views/Jobs";
 
 const appRoutes: Array<RouteObject> = [
   {
@@ -27,6 +28,10 @@ const appRoutes: Array<RouteObject> = [
   {
     path: "/client-list/overview",
     element: <ClientOverview />,
+  },
+  {
+    path: "/jobs",
+    element: <Jobs />,
   },
 ];
 export default appRoutes;
