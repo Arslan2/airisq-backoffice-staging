@@ -7,6 +7,7 @@ import Clients from "views/Clients";
 import EditClient from "views/Clients/EditClient";
 import ClientOverview from "views/Clients/ClientOverview";
 import Jobs from "views/Jobs";
+import EditJob from "views/Jobs/EditJob";
 
 const appRoutes: Array<RouteObject> = [
   {
@@ -32,6 +33,10 @@ const appRoutes: Array<RouteObject> = [
   {
     path: "/jobs",
     element: <Jobs />,
+  },
+  {
+    path: "/jobs/edit/:id",
+    element: <EditJob />,
   },
 ];
 export default appRoutes;

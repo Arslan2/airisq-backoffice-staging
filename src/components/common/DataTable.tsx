@@ -93,7 +93,11 @@ const DataTable = ({ data, header, page }: DataTableProps) => {
                     src={EditIcon}
                     alt="icon"
                     onClick={() =>
-                      navigate(page === "clients" ? "/client-list/edit/1" : "#")
+                      navigate(
+                        page === "clients"
+                          ? "/client-list/edit/1"
+                          : "/jobs/edit/1"
+                      )
                     }
                     className="bg-hawkes-blue p-1 rounded-lg cursor-pointer"
                   />
