@@ -308,26 +308,27 @@ function Sidebar(props: SidebarProps) {
 
 function DashboardRow(props: any) {
   return (
-    <Link
-      to={props.redirectLink}
-      className={`flex justify-between items-center h-12 p-6 ${
+    <div
+      className={`flex justify-between items-center h-12 ${
         props.selected ? "bg-pacific-blue" : ""
       } cursor-pointer hover:bg-pacific-blue`}
     >
-      <div className="flex items-center justify-between gap-6 h-6 w-full">
-        <div className="flex items-center gap-6 w-full">
-          <img src={props.image} alt="icon" className="w-3.5 h-3.5" />
-          <span
-            className={`text-base text-poster-blue ${
-              props.hidden && "opacity-0"
-            } duration-500`}
-          >
-            {props.title}
-          </span>
-        </div>
+      <div className="flex items-center justify-between h-6 w-full">
+        <Link to={props.redirectLink} className="w-full p-6">
+          <div className="flex items-center gap-6 w-full">
+            <img src={props.image} alt="icon" className="w-3.5 h-3.5" />
+            <span
+              className={`text-base text-poster-blue ${
+                props.hidden && "opacity-0"
+              } duration-500`}
+            >
+              {props.title}
+            </span>
+          </div>
+        </Link>
         {props.showDropdown ? (
-          <div onClick={() => props.setShowDropdown("client")}>
-            {props.dropdownOpen ? (
+          <div className="pr-6" onClick={() => props.setShowDropdown("client")}>
+            {props.dropdownOpen && props.selected ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -361,7 +362,7 @@ function DashboardRow(props: any) {
           </div>
         ) : null}
       </div>
-    </Link>
+    </div>
   );
 }
 
