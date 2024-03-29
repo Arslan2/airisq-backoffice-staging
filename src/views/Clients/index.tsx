@@ -40,7 +40,7 @@ export default function Clients() {
       icon: CityIcon,
     },
     {
-      title: "primary contract",
+      title: "primary contact",
       icon: PrimaryContactIcon,
     },
     {
@@ -61,7 +61,7 @@ export default function Clients() {
     badge: "Attention",
     client_name: "XYZ Hospital Trust",
     city: "London",
-    primary_contract: "Patricia L. Dubose",
+    primary_contact: "Patricia L. Dubose",
     sites: "3",
   });
 
@@ -69,7 +69,7 @@ export default function Clients() {
     badge: "Expired",
     client_name: "XYZ Hospital Trust",
     city: "London",
-    primary_contract: "Patricia L. Dubose",
+    primary_contact: "Patricia L. Dubose",
     sites: "3",
   });
 

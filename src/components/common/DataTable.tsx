@@ -12,7 +12,7 @@ interface DataTableProps {
     badge?: string;
     client_name?: string;
     city?: string;
-    primary_contract?: string;
+    primary_contact?: string;
     sites?: string;
     job_type?: string;
     site?: string;
@@ -55,7 +55,7 @@ const DataTable = ({ data, header, page }: DataTableProps) => {
               }
             >
               {Object.keys(row).map((key, index) => (
-                <td className="px-6 py-4 cursor-pointer">
+                <td className="px-6 py-4 cursor-pointer" key={index}>
                   {key === "badge" ? (
                     <div
                       className={`${
