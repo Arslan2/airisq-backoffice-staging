@@ -47,7 +47,11 @@ const DataTable = ({ data, header, page }: DataTableProps) => {
               key={key}
               className="bg-white border-b border-pale-cornflower-blue px-3"
               onClick={() =>
-                navigate(page === "clients" ? "/client-list/overview" : "#")
+                navigate(
+                  page === "clients"
+                    ? "/client-list/overview"
+                    : "/jobs/overview/1"
+                )
               }
             >
               {Object.keys(row).map((key, index) => (
