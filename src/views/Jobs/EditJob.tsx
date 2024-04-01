@@ -8,6 +8,8 @@ import PdfIcon from "../../assets/img/pdfIcon.png";
 import PlusIcon from "../../assets/img/plusIcon.png";
 import PrimaryContactIcon from "../../assets/img/primaryContactIcon.png";
 import UploadIcon from "../../assets/img/uploadDocIcon.png";
+import UserIcon from "../../assets/img/userIcon.png";
+import JobDescriptionIcon from "../../assets/img/jobDescriptionIcon.png";
 
 const EditJob = () => {
   const { setSidebarOptions } = useSidebarOptions();
@@ -65,7 +67,7 @@ const EditJob = () => {
         <div className={`${gridClass}`}>
           <div className={`${colSpanClass}`}>
             <div className="flex items-center gap-2">
-              <img src={PrimaryContactIcon} alt="icon" />
+              <img src={UserIcon} alt="icon" />
               <span>Assigned Engineer</span>
             </div>
           </div>
@@ -146,9 +148,9 @@ const EditJob = () => {
           </div>
         </div>
         <div className={`${gridClass}`}>
-          <div className={`${colSpanClass}`}>
+          <div className={`${colSpanClass} !items-start`}>
             <div className="flex items-center gap-2">
-              <img src={PrimaryContactIcon} alt="icon" />
+              <img src={JobDescriptionIcon} alt="icon" />
               <span>Job Description</span>
             </div>
           </div>

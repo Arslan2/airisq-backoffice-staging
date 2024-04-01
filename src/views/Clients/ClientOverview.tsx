@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import UserIcon from "../../assets/img/userIcon.png";
+import UserIcon from "../../assets/img/userIconLight.png";
 import ClientOverviewCard from "components/Clients/ClientOverviewCard";
 import { useSidebarOptions } from "components/common/Layout";
 

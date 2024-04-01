@@ -1,8 +1,8 @@
 import JobOverviewCard from "components/Jobs/JobOverviewCard";
 import React, { useEffect } from "react";
-import UserIcon from "../../assets/img/userIcon.png";
+import UserIcon from "../../assets/img/userIconLight.png";
 import { useSidebarOptions } from "components/common/Layout";
-import JobDescriptionIcon from "../../assets/img/jobDescriptionIcon.png";
+import JobDescriptionIcon from "../../assets/img/jobDescriptionIconLight.png";
 import JobOverviewAccordion from "components/Jobs/JobOverviewAccordion";
 import PdfIcon from "../../assets/img/pdfIcon.png";
 import ReportsIcon from "../../assets/img/reportsIcon.png";

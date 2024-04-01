@@ -80,7 +80,7 @@ const DataTable = ({ data, header, page }: DataTableProps) => {
                   )}
                 </td>
               ))}
-              <td className="px-6 py-4 flex items-end gap-3 cursor-pointer">
+              <td className="px-6 py-4 flex items-end gap-3 cursor-pointer flex-wrap">
                 <div className="flex items-end gap-1">
                   <img src={WordIcon} alt="icon" /> <span>(4)</span>
                 </div>

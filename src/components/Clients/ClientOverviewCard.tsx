@@ -1,5 +1,5 @@
 import React from "react";
-import UserIcon from "../../assets/img/userIcon.png";
+import UserIcon from "../../assets/img/userIconLight.png";
 import LocationIcon from "../../assets/img/locationIconLight.png";
 import PhoneIcon from "../../assets/img/phoneIconLight.png";
 import AtIcon from "../../assets/img/atIconLight.png";
