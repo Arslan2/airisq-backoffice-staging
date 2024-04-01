@@ -51,7 +51,7 @@ const Sites = () => {
       icon: ReportsIcon,
     },
     {
-      title: "Attachment",
+      title: "Attachments",
       icon: AttachmentIcon,
     },
     {
@@ -126,7 +126,7 @@ const Sites = () => {
         </div>
         <div>
           <button className="bg-hawkes-blue text-pacific-blue py-3 px-5 rounded-full">
-            Add New Job +
+            Add New Site +
           </button>
         </div>
       </div>
