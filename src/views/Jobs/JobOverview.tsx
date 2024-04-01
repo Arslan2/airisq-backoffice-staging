@@ -34,6 +34,7 @@ const JobOverview = () => {
     setSidebarOptions({
       dashboard: false,
       client: false,
+      sites: false,
       schedule: false,
       jobs: true,
       messaging: false,

@@ -9,6 +9,7 @@ import ClientOverview from "views/Clients/ClientOverview";
 import Jobs from "views/Jobs";
 import EditJob from "views/Jobs/EditJob";
 import JobOverview from "views/Jobs/JobOverview";
+import Sites from "views/Clients/Sites";
 
 const appRoutes: Array<RouteObject> = [
   {
@@ -30,6 +31,10 @@ const appRoutes: Array<RouteObject> = [
   {
     path: "/client-list/overview",
     element: <ClientOverview />,
+  },
+  {
+    path: "/client-list/sites",
+    element: <Sites />,
   },
   {
     path: "/jobs",

@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet, useLocation, useOutletContext } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
 import LogoImage from "../../../assets/img/test-image.jpg";
 import SidebarLogo from "../../../assets/img/AirisQ-HiRes.png";
 import DashboardIcon from "../../../assets/img/dashboardIcon.png";
@@ -22,6 +28,7 @@ interface SidebarProps {
   sidebarOptions: {
     dashboard: boolean;
     client: boolean;
+    sites: boolean;
     schedule: boolean;
     jobs: boolean;
     messaging: boolean;
@@ -39,6 +46,7 @@ function Layout() {
   const [sidebarOptions, setSidebarOptions] = useState({
     dashboard: true,
     client: false,
+    sites: false,
     schedule: false,
     jobs: false,
     messaging: false,
@@ -205,9 +213,10 @@ function Footer() {
 }
 
 function Sidebar(props: SidebarProps) {
-  let { pathname } = useLocation();
+  const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState({
-    client: props.sidebarOptions.client ? true : false,
+    client:
+      props.sidebarOptions.client || props.sidebarOptions.sites ? true : false,
     messaging: false,
     settings: false,
   });
@@ -224,11 +233,14 @@ function Sidebar(props: SidebarProps) {
 
   useEffect(() => {
     setShowDropdown({
-      client: props.sidebarOptions.client ? true : false,
+      client:
+        props.sidebarOptions.client || props.sidebarOptions.sites
+          ? true
+          : false,
       messaging: false,
       settings: false,
     });
-  }, [props.sidebarOptions.client]);
+  }, [props.sidebarOptions.client, props.sidebarOptions.sites]);
 
   return (
     <div
@@ -263,11 +275,17 @@ function Sidebar(props: SidebarProps) {
           setShowDropdown={handleShowHideDropdown}
           dropdownOpen={showDropdown.client}
         />
-        {props.sidebarOptions.client &&
-        props.sidebarExpanded &&
-        showDropdown.client ? (
+        {props.sidebarOptions.client ||
+        (props.sidebarOptions.sites &&
+          props.sidebarExpanded &&
+          showDropdown.client) ? (
           <ul className="list-disc list-inside">
-            <li className="ml-10 px-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1">
+            <li
+              className={`pl-16 pr-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1 hover:bg-pacific-blue ${
+                props.sidebarOptions.sites ? "bg-pacific-blue" : ""
+              }`}
+              onClick={() => navigate("/client-list/sites")}
+            >
               Sites
             </li>
             <li className="ml-10 px-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1">
