@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import rootReducer from 'slices';
 
 import createStore from '../store';
+import { BrowserRouter } from 'react-router-dom';
 
 const s = createStore();
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
@@ -24,7 +25,11 @@ export function renderWithProviders(
   }: ExtendedRenderOptions = {},
 ) {
   function Wrapper({ children }: PropsWithChildren<any>): React.ReactElement {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <BrowserRouter>
+        <Provider store={store}>{children}</Provider>
+      </BrowserRouter>
+    );
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
