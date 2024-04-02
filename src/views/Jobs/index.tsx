@@ -207,6 +207,7 @@ const Jobs = () => {
           data={data}
           page="jobs"
           editLink="/jobs/edit/1"
+          overviewPageLink="/jobs/overview/1"
         />
       </div>
     </div>

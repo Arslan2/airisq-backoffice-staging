@@ -169,6 +169,7 @@ export default function Clients() {
           data={data}
           editLink="/client-list/edit/1"
           page="clients"
+          overviewPageLink="/client-list/overview"
         />
       </div>
     </div>

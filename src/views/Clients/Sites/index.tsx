@@ -168,6 +168,7 @@ const Sites = () => {
           data={data}
           page="sites"
           editLink="/client-list/sites/edit/1"
+          overviewPageLink="/client-list/sites/overview/1"
         />
       </div>
     </div>

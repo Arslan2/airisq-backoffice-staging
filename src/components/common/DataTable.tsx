@@ -22,9 +22,16 @@ interface DataTableProps {
   }[];
   page: string;
   editLink: string;
+  overviewPageLink: string;
 }
 
-const DataTable = ({ data, header, page, editLink }: DataTableProps) => {
+const DataTable = ({
+  data,
+  header,
+  page,
+  editLink,
+  overviewPageLink,
+}: DataTableProps) => {
   const navigate = useNavigate();
 
   return (
@@ -47,13 +54,7 @@ const DataTable = ({ data, header, page, editLink }: DataTableProps) => {
             <tr
               key={key}
               className="bg-white border-b border-pale-cornflower-blue px-3"
-              onClick={() =>
-                navigate(
-                  page === "clients"
-                    ? "/client-list/overview"
-                    : "/jobs/overview/1"
-                )
-              }
+              onClick={() => navigate(overviewPageLink)}
             >
               {Object.keys(row).map((key, index) => (
                 <td className="px-6 py-4 cursor-pointer" key={index}>

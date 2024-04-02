@@ -11,6 +11,8 @@ import EditJob from "views/Jobs/EditJob";
 import JobOverview from "views/Jobs/JobOverview";
 import Sites from "views/Clients/Sites";
 import EditSite from "views/Clients/Sites/EditSite";
+import SiteOverviewDetail from "views/Clients/Sites/SiteOverviewDetail";
+import SiteOVerview from "views/Clients/Sites/SiteOverview";
 
 const appRoutes: Array<RouteObject> = [
   {
@@ -40,6 +42,14 @@ const appRoutes: Array<RouteObject> = [
   {
     path: "/client-list/sites/edit/:id",
     element: <EditSite />,
+  },
+  {
+    path: "/client-list/sites/overview/:id",
+    element: <SiteOVerview />,
+  },
+  {
+    path: "/client-list/sites/overview/:id/details",
+    element: <SiteOverviewDetail />,
   },
   {
     path: "/jobs",

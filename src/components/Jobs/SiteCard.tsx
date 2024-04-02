@@ -12,7 +12,7 @@ const SiteCard = ({ details }: SiteCardProps) => {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbymDwtD8ItX8niCDWmXyF3_kyPeCXEpr1kA&usqp=CAU";
 
   return (
-    <div className="w-full rounded-md border border-pale-cornflower-blue p-2">
+    <div className="w-full rounded-md border border-pale-cornflower-blue bg-white p-2">
       <div className="flex items-start justify-between">
         <img src={imageSrcTemp} alt="Icon" className="w-1/2" />
         <div
