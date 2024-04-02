@@ -17,6 +17,7 @@ baseConfig = {
   output: {
     path: DIST_PATH,
     filename: 'js/[name].bundle.js',
+    publicPath: '/'
   },
   resolve: {
     modules: [APP_PATH, 'node_modules'],
@@ -75,8 +76,11 @@ baseConfig = {
         removeRedundantAttributes: true,
       },
     }),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin(),    
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };
 
 module.exports = (env) => {
