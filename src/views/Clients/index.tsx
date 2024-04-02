@@ -164,7 +164,12 @@ export default function Clients() {
         </div>
         <hr className="h-0.5 border-t-0 bg-pale-cornflower-blue" />
 
-        <DataTable header={tableHeader} data={data} page="clients" />
+        <DataTable
+          header={tableHeader}
+          data={data}
+          editLink="/client-list/edit/1"
+          page="clients"
+        />
       </div>
     </div>
   );

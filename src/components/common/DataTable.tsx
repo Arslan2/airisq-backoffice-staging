@@ -21,9 +21,10 @@ interface DataTableProps {
     report_completed?: string;
   }[];
   page: string;
+  editLink: string;
 }
 
-const DataTable = ({ data, header, page }: DataTableProps) => {
+const DataTable = ({ data, header, page, editLink }: DataTableProps) => {
   const navigate = useNavigate();
 
   return (
@@ -96,13 +97,7 @@ const DataTable = ({ data, header, page }: DataTableProps) => {
                   <img
                     src={EditIcon}
                     alt="icon"
-                    onClick={() =>
-                      navigate(
-                        page === "clients"
-                          ? "/client-list/edit/1"
-                          : "/jobs/edit/1"
-                      )
-                    }
+                    onClick={() => navigate(editLink)}
                     className="bg-hawkes-blue p-1 rounded-lg cursor-pointer"
                   />
                   <img

@@ -163,7 +163,12 @@ const Sites = () => {
         </div>
         <hr className="h-0.5 border-t-0 bg-pale-cornflower-blue" />
 
-        <DataTable header={tableHeader} data={data} page="jobs" />
+        <DataTable
+          header={tableHeader}
+          data={data}
+          page="sites"
+          editLink="/client-list/sites/edit/1"
+        />
       </div>
     </div>
   );
