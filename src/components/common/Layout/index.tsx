@@ -14,6 +14,7 @@ import NotificationIcon from "../../../assets/img/notificationIcon.png";
 import SearchIcon from "../../../assets/img/SearchIcon.png";
 import ChevronRightIcon from "../../../assets/img/chevronRightIcon.png";
 import ChevronLeftIcon from "../../../assets/img/chevronLeftIcon.png";
+import RightsReservedIcon from "../../../assets/img/rightsReservedIconLight.png";
 
 interface SidebarProps {
   sidebarExpanded: boolean;
@@ -58,7 +59,11 @@ function Layout() {
         >
           <Header />
           <Outlet context={{ setSidebarOptions } satisfies ContextType} />
-          {pathname === "/client-list" ? <Footer /> : null}
+          {pathname === "/client-list" || pathname === "/jobs" ? (
+            <Footer />
+          ) : (
+            <CommonFooter />
+          )}
         </div>
       </div>
     </>
@@ -153,6 +158,25 @@ function Header() {
     </nav>
   );
 }
+
+function CommonFooter() {
+  return (
+    <footer className="bg-alice-blue-50 bottom-0 py-6 px-8">
+      <div className="flex items-center gap-3 text-poster-blue text-xs">
+        <span>Lorem Ispum</span>
+        <span>Lorem Ispum</span>
+        <span>Lorem Ispum</span>
+        <span>Lorem Ispum</span>
+        <span>Lorem Ispum</span>
+      </div>
+      <div className="flex items-center text-pacific-blue text-xs gap-1">
+        <img src={RightsReservedIcon} alt="Icon" />
+        2024 All rights reserved
+      </div>
+    </footer>
+  );
+}
+
 function Footer() {
   return (
     <footer className="bg-white sticky bottom-0">
@@ -262,7 +286,7 @@ function Sidebar(props: SidebarProps) {
           image={JobsIcon}
           title="Jobs"
           hidden={!props.sidebarExpanded}
-          redirectLink="#"
+          redirectLink="/jobs"
           selected={props.sidebarOptions.jobs}
         />
         <DashboardRow

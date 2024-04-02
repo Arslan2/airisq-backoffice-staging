@@ -15,6 +15,13 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   store?: typeof s;
 }
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useOutletContext: () => ({
+    setSidebarOptions: jest.fn(),
+  }),
+}));
+
 export function renderWithProviders(
   ui: React.ReactElement,
   {
