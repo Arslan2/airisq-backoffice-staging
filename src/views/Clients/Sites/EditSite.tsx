@@ -39,8 +39,8 @@ const EditSite = () => {
   useEffect(() => {
     setSidebarOptions({
       dashboard: false,
-      client: true,
-      sites: false,
+      client: false,
+      sites: true,
       schedule: false,
       jobs: false,
       messaging: false,
@@ -50,7 +50,7 @@ const EditSite = () => {
 
   return (
     <div className="py-6 px-8 bg-alice-blue-50 flex-1 overflow-y-auto">
-      <div className="text-poster-blue">Edit Job</div>
+      <div className="text-poster-blue">Edit Site</div>
       <div className="text-pacific-blue">09/02/2024</div>
       <div className="mt-5 bg-white shadow-lg border border-pale-cornflower-blue rounded-lg">
         {Object.keys(siteData).map((key, index) => (
