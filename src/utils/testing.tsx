@@ -7,12 +7,20 @@ import { Provider } from 'react-redux';
 import rootReducer from 'slices';
 
 import createStore from '../store';
+import { BrowserRouter } from 'react-router-dom';
 
 const s = createStore();
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<typeof rootReducer>;
   store?: typeof s;
 }
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useOutletContext: () => ({
+    setSidebarOptions: jest.fn(),
+  }),
+}));
 
 export function renderWithProviders(
   ui: React.ReactElement,
@@ -24,7 +32,11 @@ export function renderWithProviders(
   }: ExtendedRenderOptions = {},
 ) {
   function Wrapper({ children }: PropsWithChildren<any>): React.ReactElement {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <BrowserRouter>
+        <Provider store={store}>{children}</Provider>
+      </BrowserRouter>
+    );
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
