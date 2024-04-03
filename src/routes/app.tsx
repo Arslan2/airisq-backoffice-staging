@@ -13,6 +13,7 @@ import Sites from "views/Clients/Sites";
 import EditSite from "views/Clients/Sites/EditSite";
 import SiteOverviewDetail from "views/Clients/Sites/SiteOverviewDetail";
 import SiteOVerview from "views/Clients/Sites/SiteOverview";
+import Contacts from "views/Clients/Contacts";
 
 const appRoutes: Array<RouteObject> = [
   {
@@ -50,6 +51,10 @@ const appRoutes: Array<RouteObject> = [
   {
     path: "/client-list/sites/overview/:id/details",
     element: <SiteOverviewDetail />,
+  },
+  {
+    path: "/client-list/contacts",
+    element: <Contacts />,
   },
   {
     path: "/jobs",
