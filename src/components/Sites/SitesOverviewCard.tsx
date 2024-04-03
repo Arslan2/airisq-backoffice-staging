@@ -17,7 +17,7 @@ const SitesOverviewCard = () => {
             currentTarget.src =
               "https://cdn-icons-png.flaticon.com/512/21/21104.png";
           }}
-          alt="Client Image"
+          alt="Site Image"
         />
       </a>
       <div className="p-5 text-poster-blue text-xs">
