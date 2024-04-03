@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { useSidebarOptions } from "components/common/Layout";
 import DocTypeIcon from "../../../assets/img/DocTypeIcon.png";
+import AtIcon from "../../../assets/img/atIcon.png";
 import ClientIcon from "../../../assets/img/clientsIcon.png";
-import LocationIcon from "../../../assets/img/locationIcon.png";
 import PdfIcon from "../../../assets/img/pdfIcon.png";
+import PhoneIcon from "../../../assets/img/phoneIcon.png";
 import PrimaryContactIcon from "../../../assets/img/primaryContactIcon.png";
 import RadioIcon from "../../../assets/img/radioIcon.png";
+import RoleIcon from "../../../assets/img/roleIcon.png";
 import UploadIcon from "../../../assets/img/uploadDocIcon.png";
+import UserIcon from "../../../assets/img/userIcon.png";
 
 const EditContacts = () => {
   const { setSidebarOptions } = useSidebarOptions();
@@ -18,8 +21,8 @@ const EditContacts = () => {
     "col-span-9 px-3 py-5 text-poster-blue flex items-center text-xs";
 
   const clientData = {
-    first_name: { value: "Patricia", icon: ClientIcon },
-    last_name: { value: "Dubose", icon: LocationIcon },
+    first_name: { value: "Patricia", icon: UserIcon },
+    last_name: { value: "Dubose", icon: UserIcon },
   };
 
   useEffect(() => {
@@ -58,7 +61,7 @@ const EditContacts = () => {
         <div className={`${gridClass}`}>
           <div className={`${colSpanClass}`}>
             <div className="flex items-center gap-2">
-              <img src={DocTypeIcon} alt="icon" />
+              <img src={RoleIcon} alt="icon" />
               <span>Role</span>
             </div>
           </div>
@@ -98,7 +101,7 @@ const EditContacts = () => {
         <div className={`${gridClass}`}>
           <div className={`${colSpanClass}`}>
             <div className="flex items-center gap-2">
-              <img src={UploadIcon} alt="icon" />
+              <img src={PhoneIcon} alt="icon" />
               <span>Contact Number</span>
             </div>
           </div>
@@ -109,7 +112,7 @@ const EditContacts = () => {
         <div className={`${gridClass}`}>
           <div className={`${colSpanClass}`}>
             <div className="flex items-center gap-2">
-              <img src={DocTypeIcon} alt="icon" />
+              <img src={AtIcon} alt="icon" />
               <span>Email</span>
             </div>
           </div>
