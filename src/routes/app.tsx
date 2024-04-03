@@ -14,6 +14,7 @@ import EditSite from "views/Clients/Sites/EditSite";
 import SiteOverviewDetail from "views/Clients/Sites/SiteOverviewDetail";
 import SiteOVerview from "views/Clients/Sites/SiteOverview";
 import Contacts from "views/Clients/Contacts";
+import EditContacts from "views/Clients/Contacts/EditContacts";
 
 const appRoutes: Array<RouteObject> = [
   {
@@ -55,6 +56,10 @@ const appRoutes: Array<RouteObject> = [
   {
     path: "/client-list/contacts",
     element: <Contacts />,
+  },
+  {
+    path: "/client-list/contacts/edit/1",
+    element: <EditContacts />,
   },
   {
     path: "/jobs",
