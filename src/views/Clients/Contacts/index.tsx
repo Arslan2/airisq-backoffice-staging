@@ -148,9 +148,9 @@ const Contacts = () => {
         <DataTable
           header={tableHeader}
           data={data}
-          editLink="/client-list/edit/1"
-          page="clients"
-          overviewPageLink="/client-list/overview"
+          editLink="/client-list/contacts/edit/1"
+          page="contacts"
+          overviewPageLink="/client-list/contacts/overview/1"
         />
       </div>
     </div>
