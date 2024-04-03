@@ -37,14 +37,17 @@ const EditSite = () => {
   };
 
   useEffect(() => {
-    setSidebarOptions({
-      dashboard: false,
-      client: false,
-      sites: true,
-      schedule: false,
-      jobs: false,
-      messaging: false,
-      settings: false,
+    setSidebarOptions((prevObject) => {
+      let updatedObject = {};
+      updatedObject["sites"] = true;
+
+      Object.keys(prevObject).map((key) => {
+        if (key !== "sites") {
+          updatedObject[key] = false;
+        }
+      });
+
+      return updatedObject;
     });
   }, []);
 

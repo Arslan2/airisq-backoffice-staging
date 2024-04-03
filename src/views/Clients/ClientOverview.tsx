@@ -7,14 +7,17 @@ const ClientOverview = () => {
   const { setSidebarOptions } = useSidebarOptions();
 
   useEffect(() => {
-    setSidebarOptions({
-      dashboard: false,
-      client: true,
-      sites: false,
-      schedule: false,
-      jobs: false,
-      messaging: false,
-      settings: false,
+    setSidebarOptions((prevObject) => {
+      let updatedObject = {};
+      updatedObject["client"] = true;
+
+      Object.keys(prevObject).map((key) => {
+        if (key !== "client") {
+          updatedObject[key] = false;
+        }
+      });
+
+      return updatedObject;
     });
   }, []);
 

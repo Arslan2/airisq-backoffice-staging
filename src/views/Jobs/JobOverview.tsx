@@ -31,14 +31,17 @@ const JobOverview = () => {
   });
 
   useEffect(() => {
-    setSidebarOptions({
-      dashboard: false,
-      client: false,
-      sites: false,
-      schedule: false,
-      jobs: true,
-      messaging: false,
-      settings: false,
+    setSidebarOptions((prevObject) => {
+      let updatedObject = {};
+      updatedObject["jobs"] = true;
+
+      Object.keys(prevObject).map((key) => {
+        if (key !== "jobs") {
+          updatedObject[key] = false;
+        }
+      });
+
+      return updatedObject;
     });
   }, []);
 
