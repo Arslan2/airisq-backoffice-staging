@@ -2,14 +2,14 @@ import React from "react";
 import { CardPropsType } from "views/Jobs/JobOverview";
 import HomeIcon from "../../assets/img/homeIconLight.png";
 import LocationIcon from "../../assets/img/locationIconLight.png";
+import MapImage from "../../assets/img/mapImage.png";
 
 interface SiteCardProps {
   details: CardPropsType;
 }
 
 const SiteCard = ({ details }: SiteCardProps) => {
-  const imageSrcTemp =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbymDwtD8ItX8niCDWmXyF3_kyPeCXEpr1kA&usqp=CAU";
+  const imageSrcTemp = MapImage;
 
   return (
     <div className="w-full rounded-md border border-pale-cornflower-blue bg-white p-2">

@@ -4,6 +4,7 @@ import LocationIcon from "../../assets/img/locationIconLight.png";
 import PhoneIcon from "../../assets/img/phoneIconLight.png";
 import AtIcon from "../../assets/img/atIconLight.png";
 import PlusIcon from "../../assets/img/plusIconLight.png";
+import ClientDefaultImage from "../../assets/img/clientOverviewDefaultImage.png";
 
 const ClientOverviewCard = () => {
   return (
@@ -14,8 +15,7 @@ const ClientOverviewCard = () => {
           src={"/docs/images/blog/image-1.jpg"}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
-            currentTarget.src =
-              "https://cdn-icons-png.flaticon.com/512/21/21104.png";
+            currentTarget.src = ClientDefaultImage;
           }}
           alt="Client Image"
         />
@@ -23,11 +23,13 @@ const ClientOverviewCard = () => {
       <div className="p-5 text-poster-blue text-xs">
         <div>
           <div className="flex justify-between">
-          <div className="flex items-center">
-            <img src={UserIcon} alt="Icon" className="w-4 h-4 me-2" />
-            <span>Client Name</span>
-          </div>
-          <div className="rounded-full bg-[#EBF1FD] text-[#2080F7] py-1 px-2">Attention</div>
+            <div className="flex items-center">
+              <img src={UserIcon} alt="Icon" className="w-4 h-4 me-2" />
+              <span>Client Name</span>
+            </div>
+            <div className="rounded-full bg-[#EBF1FD] text-[#2080F7] py-1 px-2">
+              Attention
+            </div>
           </div>
           <div className="ml-6 my-3 text-sm">XYZ Hospital Trust</div>
         </div>
@@ -61,7 +63,10 @@ const ClientOverviewCard = () => {
           <div className="ml-6 my-3 text-sm">info@mbe-london.co.uk.</div>
         </div>
         <div className="mt-10 flex justify-center">
-          <button className="flex items-center gap-2 bg-hawkes-blue text-pacific-blue rounded-full p-3" aria-label="add-new-contact-btn">
+          <button
+            className="flex items-center gap-2 bg-hawkes-blue text-pacific-blue rounded-full p-3"
+            aria-label="add-new-contact-btn"
+          >
             Add New Contact
             <img src={PlusIcon} alt="icon" />
           </button>

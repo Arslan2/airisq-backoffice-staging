@@ -4,6 +4,7 @@ import LocationIcon from "../../assets/img/locationIconLight.png";
 import PhoneIcon from "../../assets/img/phoneIconLight.png";
 import PlusIcon from "../../assets/img/plusIconLight.png";
 import UserIcon from "../../assets/img/userIconLight.png";
+import SiteDefaultImage from "../../assets/img/mapImage.png";
 
 const SitesOverviewCard = () => {
   return (
@@ -14,8 +15,7 @@ const SitesOverviewCard = () => {
           src={"/docs/images/blog/image-1.jpg"}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
-            currentTarget.src =
-              "https://cdn-icons-png.flaticon.com/512/21/21104.png";
+            currentTarget.src = SiteDefaultImage;
           }}
           alt="Site Image"
         />

@@ -4,6 +4,7 @@ import JobTypeIcon from "../../assets/img/jobListIcon.png";
 import PlusIcon from "../../assets/img/plusIconLight.png";
 import SiteContactIcon from "../../assets/img/primaryContactIconLight.png";
 import UserIcon from "../../assets/img/userIconLight.png";
+import JobDefaultImage from "../../assets/img/jobOverviewDefaultImage.png";
 
 const JobOverviewCard = () => {
   return (
@@ -14,8 +15,7 @@ const JobOverviewCard = () => {
           src={"/docs/images/blog/image-1.jpg"}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
-            currentTarget.src =
-              "https://cdn-icons-png.flaticon.com/512/21/21104.png";
+            currentTarget.src = JobDefaultImage;
           }}
           alt="Client Image"
         />
