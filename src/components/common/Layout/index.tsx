@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet, useLocation, useOutletContext } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
 import LogoImage from "../../../assets/img/test-image.jpg";
 import SidebarLogo from "../../../assets/img/AirisQ-HiRes.png";
 import DashboardIcon from "../../../assets/img/dashboardIcon.png";
@@ -22,6 +28,8 @@ interface SidebarProps {
   sidebarOptions: {
     dashboard: boolean;
     client: boolean;
+    sites: boolean;
+    contacts: boolean;
     schedule: boolean;
     jobs: boolean;
     messaging: boolean;
@@ -39,6 +47,8 @@ function Layout() {
   const [sidebarOptions, setSidebarOptions] = useState({
     dashboard: true,
     client: false,
+    sites: false,
+    contacts: false,
     schedule: false,
     jobs: false,
     messaging: false,
@@ -205,9 +215,10 @@ function Footer() {
 }
 
 function Sidebar(props: SidebarProps) {
-  let { pathname } = useLocation();
+  const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState({
-    client: props.sidebarOptions.client ? true : false,
+    client:
+      props.sidebarOptions.client || props.sidebarOptions.sites ? true : false,
     messaging: false,
     settings: false,
   });
@@ -222,13 +233,23 @@ function Sidebar(props: SidebarProps) {
     }
   };
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("AuthToken");
+    navigate("/login");
+  }
+
   useEffect(() => {
     setShowDropdown({
-      client: props.sidebarOptions.client ? true : false,
+      client:
+        props.sidebarOptions.client ||
+        props.sidebarOptions.sites ||
+        props.sidebarOptions.contacts
+          ? true
+          : false,
       messaging: false,
       settings: false,
     });
-  }, [props.sidebarOptions.client]);
+  }, [props.sidebarOptions.client, props.sidebarOptions.sites]);
 
   return (
     <div
@@ -241,8 +262,8 @@ function Sidebar(props: SidebarProps) {
           src={SidebarLogo}
           alt="Airisq Logo"
           className={`${
-            props.sidebarExpanded ? "" : "w-7 h-10"
-          } transition-[width] duration-1000`}
+            props.sidebarExpanded ? "w-20 h-24" : "w-7 h-10"
+          } transition-all duration-1000`}
         />
       </div>
       <div className="mt-5">
@@ -263,14 +284,26 @@ function Sidebar(props: SidebarProps) {
           setShowDropdown={handleShowHideDropdown}
           dropdownOpen={showDropdown.client}
         />
-        {props.sidebarOptions.client &&
-        props.sidebarExpanded &&
-        showDropdown.client ? (
+        {props.sidebarOptions.client ||
+        props.sidebarOptions.contacts ||
+        (props.sidebarOptions.sites &&
+          props.sidebarExpanded &&
+          showDropdown.client) ? (
           <ul className="list-disc list-inside">
-            <li className="ml-10 px-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1">
+            <li
+              className={`pl-16 pr-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1 hover:bg-pacific-blue ${
+                props.sidebarOptions.sites ? "bg-pacific-blue" : ""
+              }`}
+              onClick={() => navigate("/client-list/sites")}
+            >
               Sites
             </li>
-            <li className="ml-10 px-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1">
+            <li
+              className={`pl-16 pr-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1 hover:bg-pacific-blue ${
+                props.sidebarOptions.contacts ? "bg-pacific-blue" : ""
+              }`}
+              onClick={() => navigate("/client-list/contacts")}
+            >
               Contacts
             </li>
           </ul>
@@ -304,7 +337,7 @@ function Sidebar(props: SidebarProps) {
           selected={props.sidebarOptions.settings}
         />
       </div>
-      <div className="absolute bottom-5 w-full">
+      <div className="absolute bottom-5 w-full" onClick={handleLogout}>
         <DashboardRow
           image={LogoutIcon}
           title="Logout"

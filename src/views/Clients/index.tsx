@@ -105,13 +105,17 @@ export default function Clients() {
   };
 
   useEffect(() => {
-    setSidebarOptions({
-      dashboard: false,
-      client: true,
-      schedule: false,
-      jobs: false,
-      messaging: false,
-      settings: false,
+    setSidebarOptions((prevObject) => {
+      let updatedObject = {};
+      updatedObject["client"] = true;
+
+      Object.keys(prevObject).map((key) => {
+        if (key !== "client") {
+          updatedObject[key] = false;
+        }
+      });
+
+      return updatedObject;
     });
   }, []);
 
@@ -163,7 +167,13 @@ export default function Clients() {
         </div>
         <hr className="h-0.5 border-t-0 bg-pale-cornflower-blue" />
 
-        <DataTable header={tableHeader} data={data} page="clients" />
+        <DataTable
+          header={tableHeader}
+          data={data}
+          editLink="/client-list/edit/1"
+          page="clients"
+          overviewPageLink="/client-list/overview"
+        />
       </div>
     </div>
   );

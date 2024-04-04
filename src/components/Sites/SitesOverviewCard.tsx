@@ -1,12 +1,12 @@
 import React from "react";
-import UserIcon from "../../assets/img/userIconLight.png";
+import AtIcon from "../../assets/img/atIconLight.png";
 import LocationIcon from "../../assets/img/locationIconLight.png";
 import PhoneIcon from "../../assets/img/phoneIconLight.png";
-import AtIcon from "../../assets/img/atIconLight.png";
 import PlusIcon from "../../assets/img/plusIconLight.png";
-import ClientDefaultImage from "../../assets/img/clientOverviewDefaultImage.png";
+import UserIcon from "../../assets/img/userIconLight.png";
+import SiteDefaultImage from "../../assets/img/mapImage.png";
 
-const ClientOverviewCard = () => {
+const SitesOverviewCard = () => {
   return (
     <div className="w-full bg-white border border-gray-200 rounded-lg shadow">
       <a href="#">
@@ -15,9 +15,9 @@ const ClientOverviewCard = () => {
           src={"/docs/images/blog/image-1.jpg"}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
-            currentTarget.src = ClientDefaultImage;
+            currentTarget.src = SiteDefaultImage;
           }}
-          alt="Client Image"
+          alt="Site Image"
         />
       </a>
       <div className="p-5 text-poster-blue text-xs">
@@ -76,4 +76,4 @@ const ClientOverviewCard = () => {
   );
 };
 
-export default ClientOverviewCard;
+export default SitesOverviewCard;

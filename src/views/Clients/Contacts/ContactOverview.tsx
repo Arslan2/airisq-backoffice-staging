@@ -1,21 +1,14 @@
-import JobOverviewCard from "components/Jobs/JobOverviewCard";
 import React, { useEffect } from "react";
-import UserIcon from "../../assets/img/userIconLight.png";
+import ContactOverviewCard from "components/Contacts/ContactOverviewCard";
+import SitesAccordion from "components/Contacts/SitesAccordion";
 import { useSidebarOptions } from "components/common/Layout";
-import JobDescriptionIcon from "../../assets/img/jobDescriptionIconLight.png";
-import PdfIcon from "../../assets/img/pdfIcon.png";
-import ReportsIcon from "../../assets/img/reportsIcon.png";
+import PdfIcon from "../../../assets/img/pdfIcon.png";
+import ReportsIcon from "../../../assets/img/reportsIcon.png";
+import UserIcon from "../../../assets/img/userIcon.png";
+import HomeIcon from "../../../assets/img/homeIconLight.png";
 import OverviewAccordion from "components/common/OverviewAccordion";
 
-export interface CardPropsType {
-  name: string;
-  icon?: string;
-  last_updated?: string;
-  location?: string;
-  badge?: string;
-}
-
-const JobOverview = () => {
+const ContactOverview = () => {
   const { setSidebarOptions } = useSidebarOptions();
 
   const documents = new Array(10).fill({
@@ -33,10 +26,10 @@ const JobOverview = () => {
   useEffect(() => {
     setSidebarOptions((prevObject) => {
       let updatedObject = {};
-      updatedObject["jobs"] = true;
+      updatedObject["contacts"] = true;
 
       Object.keys(prevObject).map((key) => {
-        if (key !== "jobs") {
+        if (key !== "contacts") {
           updatedObject[key] = false;
         }
       });
@@ -49,33 +42,33 @@ const JobOverview = () => {
     <div className="py-6 px-8 bg-alice-blue-50 flex-1 overflow-y-auto">
       <div className="grid grid-cols-12 gap-3">
         <div className="col-span-3">
-          <div className="text-poster-blue text-lg">Job Overview</div>
+          <div className="text-poster-blue text-lg">Contact Overview</div>
           <div className="flex items-center mb-3 mt-10">
             <img src={UserIcon} alt="icon" />
             <span className="text-poster-blue text-sm ml-2">
-              Job Information
+              Contact Information
             </span>
           </div>
-          <JobOverviewCard />
+          <ContactOverviewCard />
         </div>
         <div className="col-span-9">
           <div className="flex items-center gap-7 text-poster-blue text-lg">
-            <span>Job Description</span>
             <span>Reports</span>
-            <span>Documents</span>
             <span>Sites</span>
+            <span>Documents</span>
           </div>
-          <div className="mt-10">
-            <div className="flex items-center mb-60">
-              <img src={JobDescriptionIcon} alt="icon" />
-              <span className="text-poster-blue text-sm ml-2">
-                Job Description
-              </span>
-            </div>
+          <div className="mt-14">
             <div className="w-full p-2 rounded-lg text-poster-blue">
               <OverviewAccordion
                 title={"Report"}
                 icon={<img src={ReportsIcon} alt="Icon" />}
+                data={documents}
+              />
+            </div>
+            <div className="w-full p-2 rounded-lg text-poster-blue">
+              <SitesAccordion
+                title={"Sites"}
+                icon={<img src={HomeIcon} alt="Icon" />}
                 data={documents}
               />
             </div>
@@ -101,28 +94,6 @@ const JobOverview = () => {
                 data={documents}
               />
             </div>
-            <div className="w-full p-2 rounded-lg text-poster-blue">
-              <OverviewAccordion
-                title={"Sites"}
-                icon={
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                    />
-                  </svg>
-                }
-                data={sites}
-              />
-            </div>
           </div>
         </div>
       </div>
@@ -130,4 +101,4 @@ const JobOverview = () => {
   );
 };
 
-export default JobOverview;
+export default ContactOverview;
