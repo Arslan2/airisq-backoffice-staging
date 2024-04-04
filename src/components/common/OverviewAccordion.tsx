@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { CardPropsType } from "views/Jobs/JobOverview";
-import DocumentCard from "./DocumentCard";
-import SiteCard from "./SiteCard";
+import DocumentCard from "../Jobs/DocumentCard";
+import SiteCard from "../Jobs/SiteCard";
 
-interface JobOverviewAccordionProps {
+interface OverviewAccordionProps {
   title: string;
   icon: React.ReactElement<React.SVGProps<SVGElement>>;
   data: CardPropsType[];
 }
 
-const JobOverviewAccordion = ({
+const OverviewAccordion = ({
   title,
   icon,
   data,
-}: JobOverviewAccordionProps) => {
+}: OverviewAccordionProps) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
 
   return (
@@ -72,4 +72,4 @@ const JobOverviewAccordion = ({
   );
 };
 
-export default JobOverviewAccordion;
+export default OverviewAccordion;

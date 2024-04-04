@@ -13,13 +13,13 @@ import UserIcon from "../../assets/img/userIconLight.png";
 import WordIcon from "../../assets/img/wordIcon.png";
 import ClientsFilters from "components/Clients/ClientsFilters";
 
-interface JobOverviewAccordionProps {
+interface ContactsAccordionProps {
   title: string;
   icon: React.ReactElement<React.SVGProps<SVGElement>>;
   data: CardPropsType[];
 }
 
-const ContactsAccordion = ({ title, icon }: JobOverviewAccordionProps) => {
+const ContactsAccordion = ({ title, icon }: ContactsAccordionProps) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
   const [showByBadge, setShowByBadge] = useState(false);
   const [showByBadgeFilter, setShowByBadgeFilter] = useState({

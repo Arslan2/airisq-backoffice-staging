@@ -1,5 +1,3 @@
-import JobOverviewAccordion from "components/Jobs/JobOverviewAccordion";
-import JobOverviewCard from "components/Jobs/JobOverviewCard";
 import { useSidebarOptions } from "components/common/Layout";
 import React, { useEffect } from "react";
 import PdfIcon from "../../../assets/img/pdfIcon.png";
@@ -9,6 +7,8 @@ import JobsIcon from "../../../assets/img/jobListIcon.png";
 import ContactIcon from "../../../assets/img/clientIconLight.png";
 import SchemanticsIcon from "../../../assets/img/schemanticsIcon.png";
 import ContactsAccordion from "components/Sites/ContactsAccordion";
+import OverviewAccordion from "components/common/OverviewAccordion";
+import SitesOverviewDetailCard from "components/Sites/SitesOverviewDetailCard";
 
 const SiteOverviewDetail = () => {
   const { setSidebarOptions } = useSidebarOptions();
@@ -51,7 +51,7 @@ const SiteOverviewDetail = () => {
               Contact Information
             </span>
           </div>
-          <JobOverviewCard />
+          <SitesOverviewDetailCard />
         </div>
         <div className="col-span-9">
           <div className="flex items-center gap-7 text-poster-blue text-lg">
@@ -63,7 +63,7 @@ const SiteOverviewDetail = () => {
           </div>
           <div className="mt-14">
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <JobOverviewAccordion
+              <OverviewAccordion
                 title={"Report"}
                 icon={<img src={ReportsIcon} alt="Icon" />}
                 data={documents}
@@ -77,7 +77,7 @@ const SiteOverviewDetail = () => {
               />
             </div>
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <JobOverviewAccordion
+              <OverviewAccordion
                 title={"Documents"}
                 icon={
                   <svg
@@ -99,14 +99,14 @@ const SiteOverviewDetail = () => {
               />
             </div>
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <JobOverviewAccordion
+              <OverviewAccordion
                 title={"Jobs"}
                 icon={<img src={JobsIcon} alt="Icon" />}
                 data={sites}
               />
             </div>
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <JobOverviewAccordion
+              <OverviewAccordion
                 title={"Schemantics"}
                 icon={<img src={SchemanticsIcon} alt="Icon" />}
                 data={sites}

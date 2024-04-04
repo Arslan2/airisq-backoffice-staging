@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import ContactOverviewCard from "components/Contacts/ContactOverviewCard";
 import SitesAccordion from "components/Contacts/SitesAccordion";
-import JobOverviewAccordion from "components/Jobs/JobOverviewAccordion";
 import { useSidebarOptions } from "components/common/Layout";
-import ContactIcon from "../../../assets/img/clientIconLight.png";
 import PdfIcon from "../../../assets/img/pdfIcon.png";
 import ReportsIcon from "../../../assets/img/reportsIcon.png";
 import UserIcon from "../../../assets/img/userIcon.png";
 import HomeIcon from "../../../assets/img/homeIconLight.png";
+import OverviewAccordion from "components/common/OverviewAccordion";
 
 const ContactOverview = () => {
   const { setSidebarOptions } = useSidebarOptions();
@@ -60,7 +59,7 @@ const ContactOverview = () => {
           </div>
           <div className="mt-14">
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <JobOverviewAccordion
+              <OverviewAccordion
                 title={"Report"}
                 icon={<img src={ReportsIcon} alt="Icon" />}
                 data={documents}
@@ -74,7 +73,7 @@ const ContactOverview = () => {
               />
             </div>
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <JobOverviewAccordion
+              <OverviewAccordion
                 title={"Documents"}
                 icon={
                   <svg

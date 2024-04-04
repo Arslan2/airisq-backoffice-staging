@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import UserIcon from "../../assets/img/userIconLight.png";
 import { useSidebarOptions } from "components/common/Layout";
 import JobDescriptionIcon from "../../assets/img/jobDescriptionIconLight.png";
-import JobOverviewAccordion from "components/Jobs/JobOverviewAccordion";
 import PdfIcon from "../../assets/img/pdfIcon.png";
 import ReportsIcon from "../../assets/img/reportsIcon.png";
+import OverviewAccordion from "components/common/OverviewAccordion";
 
 export interface CardPropsType {
   name: string;
@@ -73,14 +73,14 @@ const JobOverview = () => {
               </span>
             </div>
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <JobOverviewAccordion
+              <OverviewAccordion
                 title={"Report"}
                 icon={<img src={ReportsIcon} alt="Icon" />}
                 data={documents}
               />
             </div>
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <JobOverviewAccordion
+              <OverviewAccordion
                 title={"Documents"}
                 icon={
                   <svg
@@ -102,7 +102,7 @@ const JobOverview = () => {
               />
             </div>
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <JobOverviewAccordion
+              <OverviewAccordion
                 title={"Sites"}
                 icon={
                   <svg
