@@ -233,6 +233,11 @@ function Sidebar(props: SidebarProps) {
     }
   };
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("AuthToken");
+    navigate("/login");
+  }
+
   useEffect(() => {
     setShowDropdown({
       client:
@@ -257,8 +262,8 @@ function Sidebar(props: SidebarProps) {
           src={SidebarLogo}
           alt="Airisq Logo"
           className={`${
-            props.sidebarExpanded ? "" : "w-7 h-10"
-          } transition-[width] duration-1000`}
+            props.sidebarExpanded ? "w-20 h-24" : "w-7 h-10"
+          } transition-all duration-1000`}
         />
       </div>
       <div className="mt-5">
@@ -332,7 +337,7 @@ function Sidebar(props: SidebarProps) {
           selected={props.sidebarOptions.settings}
         />
       </div>
-      <div className="absolute bottom-5 w-full">
+      <div className="absolute bottom-5 w-full" onClick={handleLogout}>
         <DashboardRow
           image={LogoutIcon}
           title="Logout"
