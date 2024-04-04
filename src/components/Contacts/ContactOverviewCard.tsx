@@ -24,7 +24,7 @@ const ContactOverviewCard = () => {
       <div className="p-5 text-poster-blue text-xs">
         <div>
           <div className="flex justify-between">
-            <div className="flex items-center">
+            <div className="flex items-center" data-testid="contactName">
               <img src={UserIcon} alt="Icon" className="w-4 h-4 me-2" />
               <span>Name</span>
             </div>
