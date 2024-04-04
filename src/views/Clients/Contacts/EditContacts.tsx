@@ -1,19 +1,17 @@
 import React, { useEffect } from "react";
-import PdfIcon from "../../assets/img/pdfIcon.png";
-import UploadIcon from "../../assets/img/uploadDocIcon.png";
-import PlusIcon from "../../assets/img/plusIcon.png";
-import ClientIcon from "../../assets/img/clientsIcon.png";
-import LocationIcon from "../../assets/img/locationIcon.png";
-import CityIcon from "../../assets/img/cityIcon.png";
-import EnvelopIcon from "../../assets/img/envelopIcon.png";
-import PhoneIcon from "../../assets/img/phoneIcon.png";
-import AtIcon from "../../assets/img/atIcon.png";
-import PrimaryContactIcon from "../../assets/img/primaryContactIcon.png";
-import DocTypeIcon from "../../assets/img/DocTypeIcon.png";
-import RadioIcon from "../../assets/img/radioIcon.png";
 import { useSidebarOptions } from "components/common/Layout";
+import DocTypeIcon from "../../../assets/img/DocTypeIcon.png";
+import AtIcon from "../../../assets/img/atIcon.png";
+import ClientIcon from "../../../assets/img/clientsIcon.png";
+import PdfIcon from "../../../assets/img/pdfIcon.png";
+import PhoneIcon from "../../../assets/img/phoneIcon.png";
+import PrimaryContactIcon from "../../../assets/img/primaryContactIcon.png";
+import RadioIcon from "../../../assets/img/radioIcon.png";
+import RoleIcon from "../../../assets/img/roleIcon.png";
+import UploadIcon from "../../../assets/img/uploadDocIcon.png";
+import UserIcon from "../../../assets/img/userIcon.png";
 
-export default function EditClient() {
+const EditContacts = () => {
   const { setSidebarOptions } = useSidebarOptions();
 
   const gridClass = "grid grid-cols-12 border border-b-pale-cornflower-blue";
@@ -23,26 +21,17 @@ export default function EditClient() {
     "col-span-9 px-3 py-5 text-poster-blue flex items-center text-xs";
 
   const clientData = {
-    client_name: { value: "XYZ Hospital Trust", icon: ClientIcon },
-    address_1: {
-      value: "Gunnersbury House , 1 Chapel Hill",
-      icon: LocationIcon,
-    },
-    address_2: { value: "9377 London Road", icon: LocationIcon },
-    address_3: { value: "N/A", icon: LocationIcon },
-    city: { value: "London", icon: CityIcon },
-    post_code: { value: "NW28 4PU", icon: EnvelopIcon },
-    contact_number: { value: "+44 20 7798 4097", icon: PhoneIcon },
-    general_email: { value: "info@mbe-london.co.uk.", icon: AtIcon },
+    first_name: { value: "Patricia", icon: UserIcon },
+    last_name: { value: "Dubose", icon: UserIcon },
   };
 
   useEffect(() => {
     setSidebarOptions((prevObject) => {
       let updatedObject = {};
-      updatedObject["client"] = true;
+      updatedObject["contacts"] = true;
 
       Object.keys(prevObject).map((key) => {
-        if (key !== "client") {
+        if (key !== "contacts") {
           updatedObject[key] = false;
         }
       });
@@ -53,7 +42,7 @@ export default function EditClient() {
 
   return (
     <div className="py-6 px-8 bg-alice-blue-50 flex-1 overflow-y-auto">
-      <div className="text-poster-blue">Edit Client</div>
+      <div className="text-poster-blue">Edit Contact</div>
       <div className="text-pacific-blue">09/02/2024</div>
       <div className="mt-5 bg-white shadow-lg border border-pale-cornflower-blue rounded-lg">
         {Object.keys(clientData).map((key, index) => (
@@ -72,15 +61,65 @@ export default function EditClient() {
         <div className={`${gridClass}`}>
           <div className={`${colSpanClass}`}>
             <div className="flex items-center gap-2">
+              <img src={RoleIcon} alt="icon" />
+              <span>Role</span>
+            </div>
+          </div>
+          <div className={`${colSpanClassInput}`}>
+            <div className="flex items-center justify-between w-full">
+              <span>Manager</span>
+              <div>
+                <select className="border border-poster-blue w-24 h-7 px-1 bg-transparent">
+                  <option>Select</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={`${gridClass}`}>
+          <div className={`${colSpanClass}`}>
+            <div className="flex items-center gap-2">
+              <img src={ClientIcon} alt="icon" />
+              <span>Client</span>
+            </div>
+          </div>
+          <div className={`${colSpanClassInput}`}>XYZ Hospital Trust</div>
+        </div>
+        <div className={`${gridClass}`}>
+          <div className={`${colSpanClass}`}>
+            <div className="flex items-center gap-2">
               <img src={PrimaryContactIcon} alt="icon" />
-              <span>Primary Contact</span>
+              <span>Sites</span>
+            </div>
+          </div>
+          <div className={`${colSpanClassInput} justify-end`}>
+            <select className="border border-poster-blue w-24 h-7 px-1 bg-transparent">
+              <option>Select</option>
+            </select>
+          </div>
+        </div>
+        <div className={`${gridClass}`}>
+          <div className={`${colSpanClass}`}>
+            <div className="flex items-center gap-2">
+              <img src={PhoneIcon} alt="icon" />
+              <span>Contact Number</span>
             </div>
           </div>
           <div className={`${colSpanClassInput} justify-between`}>
-            <span>info@mbe-london.co.uk.</span>
-            <button className="border w-24 h-7 px-1 flex items-center justify-between gap-3 border-poster-blue text-poster-blue">
-              New <img src={PlusIcon} alt="icon" />
-            </button>
+            +44 20 7798 4097
+          </div>
+        </div>
+        <div className={`${gridClass}`}>
+          <div className={`${colSpanClass}`}>
+            <div className="flex items-center gap-2">
+              <img src={AtIcon} alt="icon" />
+              <span>Email</span>
+            </div>
+          </div>
+          <div className={`${colSpanClassInput}`}>
+            <div className="flex items-center justify-between w-full">
+              <span>info@mbe-london.co.uk.</span>
+            </div>
           </div>
         </div>
         <div className={`${gridClass}`}>
@@ -137,4 +176,6 @@ export default function EditClient() {
       </div>
     </div>
   );
-}
+};
+
+export default EditContacts;

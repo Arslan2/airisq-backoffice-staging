@@ -1,25 +1,23 @@
-import { useSidebarOptions } from "components/common/Layout";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import ClientIcon from "../../assets/img/clientsIcon.png";
-import ExcelIcon from "../../assets/img/excelIcon.png";
-import WordIcon from "../../assets/img/wordIcon.png";
-import PdfIcon from "../../assets/img/pdfIcon.png";
-import SearchIcon from "../../assets/img/SearchIcon.png";
-import JobListIcon from "../../assets/img/jobListIcon.png";
-import BadgeIconLight from "../../assets/img/badgeIconLight.png";
-import ClientIconLight from "../../assets/img/clientIconLight.png";
-import SiteIcon from "../../assets/img/homeIconLight.png";
-import AttachmentIcon from "../../assets/img/attachmentIconLight.png";
-import ActionsIcon from "../../assets/img/actionIconLight.png";
-import InvoicedIcon from "../../assets/img/InvoicedIcon.png";
+import HomeIconLight from "../../../assets/img/homeIconLight.png";
+import ExcelIcon from "../../../assets/img/excelIcon.png";
+import WordIcon from "../../../assets/img/wordIcon.png";
+import PdfIcon from "../../../assets/img/pdfIcon.png";
+import SearchIcon from "../../../assets/img/SearchIcon.png";
+import { useSidebarOptions } from "components/common/Layout";
+import BadgeIconLight from "../../../assets/img/badgeIconLight.png";
+import HomeIcon from "../../../assets/img/homeIconLight.png";
+import ClientIconLight from "../../../assets/img/clientIconLight.png";
+import LocationIcon from "../../../assets/img/locationIconLight.png";
+import CityIconLight from "../../../assets/img/cityIconLight.png";
+import ReportsIcon from "../../../assets/img/reportsIcon.png";
+import AttachmentIcon from "../../../assets/img/attachmentIconLight.png";
+import ActionsIcon from "../../../assets/img/actionIconLight.png";
 import DataTable from "components/common/DataTable";
 import ClientsFilters from "components/Clients/ClientsFilters";
 
-const Jobs = () => {
+const Sites = () => {
   const { setSidebarOptions } = useSidebarOptions();
-  const navigate = useNavigate();
-
   const [search, setSearch] = useState<string>("");
   const [showByBadge, setShowByBadge] = useState(false);
   const [showByBadgeFilter, setShowByBadgeFilter] = useState({
@@ -33,31 +31,27 @@ const Jobs = () => {
       icon: BadgeIconLight,
     },
     {
-      title: "Job Type",
-      icon: JobListIcon,
+      title: "Site Name",
+      icon: HomeIcon,
     },
     {
       title: "Client",
       icon: ClientIconLight,
     },
     {
-      title: "Site",
-      icon: SiteIcon,
+      title: "Address",
+      icon: LocationIcon,
     },
     {
-      title: "Status",
-      icon: SiteIcon,
+      title: "City",
+      icon: CityIconLight,
     },
     {
-      title: "Invoiced",
-      icon: InvoicedIcon,
+      title: "Reports",
+      icon: ReportsIcon,
     },
     {
-      title: "Report Completed",
-      icon: SiteIcon,
-    },
-    {
-      title: "Attachment",
+      title: "Attachments",
       icon: AttachmentIcon,
     },
     {
@@ -66,67 +60,31 @@ const Jobs = () => {
     },
   ];
 
-  const TD1 = new Array(2).fill({
-    badge: "Expired",
-    job_type: "Validation",
-    client_name: "NHS Trust 1",
-    site: "St Nicks",
-    status: "Scheduled",
-    invoiced: "3",
-    report_completed: "NA",
-  });
-
-  const TD2 = new Array(2).fill({
+  const TD1 = new Array(5).fill({
     badge: "Attention",
-    job_type: "Verification",
-    client_name: "NHS Trust 1",
-    site: "St Nicks",
-    status: "Completed",
-    invoiced: "3",
-    report_completed: "NA",
+    site_name: "XYZ Hospital Trust",
+    client: "NHS Trust 1",
+    address: "123 The Road",
+    city: "London",
+    reports: "2",
   });
 
-  const TD3 = new Array(2).fill({
+  const TD2 = new Array(5).fill({
     badge: "Expired",
-    job_type: "Sampling",
-    client_name: "NHS Trust 1",
-    site: "St Nicks",
-    status: "Not Scheduled",
-    invoiced: "3",
-    report_completed: "NA",
+    site_name: "XYZ Hospital Trust",
+    client: "NHS Trust 1",
+    address: "123 The Road",
+    city: "London",
+    reports: "2",
   });
-
-  const TD4 = new Array(2).fill({
-    badge: "Expired",
-    job_type: "Validation",
-    client_name: "NHS Trust 1",
-    site: "St Nicks",
-    status: "On Hold",
-    invoiced: "3",
-    report_completed: "NA",
-  });
-
-  const TD5 = new Array(2).fill({
-    badge: "Attention",
-    job_type: "Verification",
-    client_name: "NHS Trust 1",
-    site: "St Nicks",
-    status: "In Progress",
-    invoiced: "3",
-    report_completed: "NA",
-  });
-
-  const tempData = [...TD1, ...TD2, ...TD3, ...TD4, ...TD5];
-
-  const [data, setData] = useState(tempData);
 
   useEffect(() => {
     setSidebarOptions((prevObject) => {
       let updatedObject = {};
-      updatedObject["jobs"] = true;
+      updatedObject["sites"] = true;
 
       Object.keys(prevObject).map((key) => {
-        if (key !== "jobs") {
+        if (key !== "sites") {
           updatedObject[key] = false;
         }
       });
@@ -134,6 +92,10 @@ const Jobs = () => {
       return updatedObject;
     });
   }, []);
+
+  const tempData = [...TD1, ...TD2];
+
+  const [data, setData] = useState(tempData);
 
   const handleApplyFilters = (closeBox) => {
     let dataT = tempData;
@@ -162,12 +124,12 @@ const Jobs = () => {
     <div className="py-6 px-8 bg-alice-blue-50">
       <div className="flex justify-between items-center">
         <div>
-          <div className="text-poster-blue">Job List</div>
+          <div className="text-poster-blue">Site List</div>
           <div className="text-pacific-blue">09/02/2024</div>
         </div>
         <div>
           <button className="bg-hawkes-blue text-pacific-blue py-3 px-5 rounded-full">
-            Add New Job +
+            Add New Site +
           </button>
         </div>
       </div>
@@ -175,8 +137,8 @@ const Jobs = () => {
         <div className="flex items-center justify-between px-3 mb-5">
           <div className="flex items-center text-poster-blue gap-5">
             <div className="flex items-center gap-2">
-              <img src={JobListIcon} alt="icon" />
-              Jobs (18)
+              <img src={HomeIconLight} alt="icon" />
+              Sites (22)
             </div>
             <ClientsFilters
               handleClickClearFilter={handleClickClearFilter}
@@ -194,8 +156,8 @@ const Jobs = () => {
             <input
               placeholder="Search"
               className="py-2 px-3 w-2/3 bg-alice-blue rounded-full placeholder-poster-blue relative"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
+              //   onChange={(e) => setSearch(e.target.value)}
+              //   value={search}
             />
             <div className="absolute right-16">
               <img src={SearchIcon} alt="icon" />
@@ -207,13 +169,13 @@ const Jobs = () => {
         <DataTable
           header={tableHeader}
           data={data}
-          page="jobs"
-          editLink="/jobs/edit/1"
-          overviewPageLink="/jobs/overview/1"
+          page="sites"
+          editLink="/client-list/sites/edit/1"
+          overviewPageLink="/client-list/sites/overview/1"
         />
       </div>
     </div>
   );
 };
 
-export default Jobs;
+export default Sites;

@@ -1,12 +1,13 @@
 import React from "react";
-import UserIcon from "../../assets/img/userIconLight.png";
-import LocationIcon from "../../assets/img/locationIconLight.png";
-import PhoneIcon from "../../assets/img/phoneIconLight.png";
 import AtIcon from "../../assets/img/atIconLight.png";
+import ClientIcon from "../../assets/img/clientIconLight.png";
+import UserDefaultImage from "../../assets/img/clientOverviewDefaultImage.png";
+import PhoneIcon from "../../assets/img/phoneIconLight.png";
 import PlusIcon from "../../assets/img/plusIconLight.png";
-import ClientDefaultImage from "../../assets/img/clientOverviewDefaultImage.png";
+import RoleIcon from "../../assets/img/roleIconLight.png";
+import UserIcon from "../../assets/img/userIconLight.png";
 
-const ClientOverviewCard = () => {
+const ContactOverviewCard = () => {
   return (
     <div className="w-full bg-white border border-gray-200 rounded-lg shadow">
       <a href="#">
@@ -15,7 +16,7 @@ const ClientOverviewCard = () => {
           src={"/docs/images/blog/image-1.jpg"}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
-            currentTarget.src = ClientDefaultImage;
+            currentTarget.src = UserDefaultImage;
           }}
           alt="Client Image"
         />
@@ -23,30 +24,30 @@ const ClientOverviewCard = () => {
       <div className="p-5 text-poster-blue text-xs">
         <div>
           <div className="flex justify-between">
-            <div className="flex items-center">
+            <div className="flex items-center" data-testid="contactName">
               <img src={UserIcon} alt="Icon" className="w-4 h-4 me-2" />
-              <span>Client Name</span>
+              <span>Name</span>
             </div>
-            <div className="rounded-full bg-[#EBF1FD] text-[#2080F7] py-1 px-2">
+            <div className="rounded-full bg-[#EBF1FD] text-[#2080F7] py-1 px-2 flex items-center gap-2">
+              <div className="h-1.5 w-1.5 bg-[#2080F7] rounded-full" />
               Attention
             </div>
+          </div>
+          <div className="ml-6 my-3 text-sm">John Doe</div>
+        </div>
+        <div>
+          <div className="flex items-center">
+            <img src={ClientIcon} alt="Icon" className="w-4 h-4 me-2" />
+            <span>Client</span>
           </div>
           <div className="ml-6 my-3 text-sm">XYZ Hospital Trust</div>
         </div>
         <div>
           <div className="flex items-center">
-            <img src={LocationIcon} alt="Icon" className="w-4 h-4 me-2" />
-            <span>Address</span>
+            <img src={RoleIcon} alt="Icon" className="w-4 h-4 me-2" />
+            <span>Role</span>
           </div>
-          <div className="ml-6 my-3 text-sm">
-            Gunnersbury House , 1 Chapel Hill
-            <br />
-            9377 London Road
-            <br />
-            London
-            <br />
-            SE1 4AB
-          </div>
+          <div className="ml-6 my-3 text-sm">Manager</div>
         </div>
         <div>
           <div className="flex items-center">
@@ -58,9 +59,9 @@ const ClientOverviewCard = () => {
         <div>
           <div className="flex items-center">
             <img src={AtIcon} alt="Icon" className="w-4 h-4 me-2" />
-            <span>General Email</span>
+            <span>Email</span>
           </div>
-          <div className="ml-6 my-3 text-sm">info@mbe-london.co.uk.</div>
+          <div className="ml-6 my-3 text-sm">info@mbe-london.co.uk</div>
         </div>
         <div className="mt-10 flex justify-center">
           <button
@@ -76,4 +77,4 @@ const ClientOverviewCard = () => {
   );
 };
 
-export default ClientOverviewCard;
+export default ContactOverviewCard;

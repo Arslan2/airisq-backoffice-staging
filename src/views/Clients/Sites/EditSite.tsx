@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import PdfIcon from "../../assets/img/pdfIcon.png";
-import UploadIcon from "../../assets/img/uploadDocIcon.png";
-import PlusIcon from "../../assets/img/plusIcon.png";
-import ClientIcon from "../../assets/img/clientsIcon.png";
-import LocationIcon from "../../assets/img/locationIcon.png";
-import CityIcon from "../../assets/img/cityIcon.png";
-import EnvelopIcon from "../../assets/img/envelopIcon.png";
-import PhoneIcon from "../../assets/img/phoneIcon.png";
-import AtIcon from "../../assets/img/atIcon.png";
-import PrimaryContactIcon from "../../assets/img/primaryContactIcon.png";
-import DocTypeIcon from "../../assets/img/DocTypeIcon.png";
-import RadioIcon from "../../assets/img/radioIcon.png";
 import { useSidebarOptions } from "components/common/Layout";
+import React, { useEffect } from "react";
+import ClientIcon from "../../../assets/img/clientsIcon.png";
+import LocationIcon from "../../../assets/img/locationIcon.png";
+import CityIcon from "../../../assets/img/cityIcon.png";
+import EnvelopIcon from "../../../assets/img/envelopIcon.png";
+import AtIcon from "../../../assets/img/atIcon.png";
+import PhoneIcon from "../../../assets/img/phoneIcon.png";
+import PrimaryContactIcon from "../../../assets/img/primaryContactIcon.png";
+import PlusIcon from "../../../assets/img/plusIcon.png";
+import UploadIcon from "../../../assets/img/uploadDocIcon.png";
+import PdfIcon from "../../../assets/img/pdfIcon.png";
+import DocTypeIcon from "../../../assets/img/DocTypeIcon.png";
+import RadioIcon from "../../../assets/img/radioIcon.png";
 
-export default function EditClient() {
+const EditSite = () => {
   const { setSidebarOptions } = useSidebarOptions();
 
   const gridClass = "grid grid-cols-12 border border-b-pale-cornflower-blue";
@@ -22,7 +22,7 @@ export default function EditClient() {
   const colSpanClassInput =
     "col-span-9 px-3 py-5 text-poster-blue flex items-center text-xs";
 
-  const clientData = {
+  const siteData = {
     client_name: { value: "XYZ Hospital Trust", icon: ClientIcon },
     address_1: {
       value: "Gunnersbury House , 1 Chapel Hill",
@@ -39,10 +39,10 @@ export default function EditClient() {
   useEffect(() => {
     setSidebarOptions((prevObject) => {
       let updatedObject = {};
-      updatedObject["client"] = true;
+      updatedObject["sites"] = true;
 
       Object.keys(prevObject).map((key) => {
-        if (key !== "client") {
+        if (key !== "sites") {
           updatedObject[key] = false;
         }
       });
@@ -53,19 +53,19 @@ export default function EditClient() {
 
   return (
     <div className="py-6 px-8 bg-alice-blue-50 flex-1 overflow-y-auto">
-      <div className="text-poster-blue">Edit Client</div>
+      <div className="text-poster-blue">Edit Site</div>
       <div className="text-pacific-blue">09/02/2024</div>
       <div className="mt-5 bg-white shadow-lg border border-pale-cornflower-blue rounded-lg">
-        {Object.keys(clientData).map((key, index) => (
+        {Object.keys(siteData).map((key, index) => (
           <div className={`${gridClass}`} key={index}>
             <div className={`${colSpanClass}`}>
               <div className="flex items-center gap-2">
-                <img src={clientData[key].icon} alt="icon" />
+                <img src={siteData[key].icon} alt="icon" />
                 <span>{key.split("_").join(" ")}</span>
               </div>
             </div>
             <div className={`${colSpanClassInput}`}>
-              {clientData[key].value}
+              {siteData[key].value}
             </div>
           </div>
         ))}
@@ -137,4 +137,6 @@ export default function EditClient() {
       </div>
     </div>
   );
-}
+};
+
+export default EditSite;

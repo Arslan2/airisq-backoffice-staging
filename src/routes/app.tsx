@@ -9,15 +9,18 @@ import ClientOverview from "views/Clients/ClientOverview";
 import Jobs from "views/Jobs";
 import EditJob from "views/Jobs/EditJob";
 import JobOverview from "views/Jobs/JobOverview";
+import Sites from "views/Clients/Sites";
+import EditSite from "views/Clients/Sites/EditSite";
+import SiteOverviewDetail from "views/Clients/Sites/SiteOverviewDetail";
+import SiteOVerview from "views/Clients/Sites/SiteOverview";
+import Contacts from "views/Clients/Contacts";
+import EditContacts from "views/Clients/Contacts/EditContacts";
+import ContactOverview from "views/Clients/Contacts/ContactOverview";
 
 const appRoutes: Array<RouteObject> = [
   {
     index: true,
     element: <Home />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
   },
   {
     path: "/client-list",
@@ -31,6 +34,28 @@ const appRoutes: Array<RouteObject> = [
     path: "/client-list/overview",
     element: <ClientOverview />,
   },
+  {
+    path: "/client-list/sites",
+    element: <Sites />,
+  },
+  {
+    path: "/client-list/sites/edit/:id",
+    element: <EditSite />,
+  },
+  {
+    path: "/client-list/sites/overview/:id",
+    element: <SiteOVerview />,
+  },
+  {
+    path: "/client-list/sites/overview/:id/details",
+    element: <SiteOverviewDetail />,
+  },
+  {
+    path: "/client-list/contacts",
+    element: <Contacts />,
+  },
+  { path: "/client-list/contacts/edit/:id", element: <EditContacts /> },
+  { path: "/client-list/contacts/overview/:id", element: <ContactOverview /> },
   {
     path: "/jobs",
     element: <Jobs />,
