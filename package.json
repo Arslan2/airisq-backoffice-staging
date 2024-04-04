@@ -8,6 +8,11 @@
     "build": "npm run clean && webpack --env MODE=prod --progress",
     "lint": "eslint src --ext .ts,.tsx --ignore-pattern *test.ts* --fix",
     "test": "jest",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
     "@babel/core": "7.20.2",
