@@ -23,10 +23,6 @@ const appRoutes: Array<RouteObject> = [
     element: <Home />,
   },
   {
-    path: "/login",
-    element: <Login />,
-  },
-  {
     path: "/client-list",
     element: <Clients />,
   },
