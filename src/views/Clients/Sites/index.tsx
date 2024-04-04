@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from "react";
+import HomeIconLight from "../../../assets/img/homeIconLight.png";
+import ExcelIcon from "../../../assets/img/excelIcon.png";
+import WordIcon from "../../../assets/img/wordIcon.png";
+import PdfIcon from "../../../assets/img/pdfIcon.png";
+import SearchIcon from "../../../assets/img/SearchIcon.png";
 import { useSidebarOptions } from "components/common/Layout";
-import { useNavigate } from "react-router-dom";
-import SearchIcon from "../../assets/img/SearchIcon.png";
-import ClientIcon from "../../assets/img/clientsIcon.png";
-import ExcelIcon from "../../assets/img/excelIcon.png";
-import PdfIcon from "../../assets/img/pdfIcon.png";
-import WordIcon from "../../assets/img/wordIcon.png";
-import ClientsFilters from "components/Clients/ClientsFilters";
+import BadgeIconLight from "../../../assets/img/badgeIconLight.png";
+import HomeIcon from "../../../assets/img/homeIconLight.png";
+import ClientIconLight from "../../../assets/img/clientIconLight.png";
+import LocationIcon from "../../../assets/img/locationIconLight.png";
+import CityIconLight from "../../../assets/img/cityIconLight.png";
+import ReportsIcon from "../../../assets/img/reportsIcon.png";
+import AttachmentIcon from "../../../assets/img/attachmentIconLight.png";
+import ActionsIcon from "../../../assets/img/actionIconLight.png";
 import DataTable from "components/common/DataTable";
-import CityIcon from "../../assets/img/cityIconLight.png";
-import PrimaryContactIcon from "../../assets/img/primaryContactIconLight.png";
-import HomeIcon from "../../assets/img/homeIconLight.png";
-import AttachmentIcon from "../../assets/img/attachmentIconLight.png";
-import ActionIcon from "../../assets/img/actionIconLight.png";
-import ClientIconLight from "../../assets/img/clientIconLight.png";
-import BadgeIconLight from "../../assets/img/badgeIconLight.png";
+import ClientsFilters from "components/Clients/ClientsFilters";
 
-export default function Clients() {
-  const navigate = useNavigate();
+const Sites = () => {
   const { setSidebarOptions } = useSidebarOptions();
+  const [search, setSearch] = useState<string>("");
   const [showByBadge, setShowByBadge] = useState(false);
   const [showByBadgeFilter, setShowByBadgeFilter] = useState({
     attention: false,
     expired: false,
   });
-  const [search, setSearch] = useState("");
 
   const tableHeader = [
     {
@@ -32,46 +31,64 @@ export default function Clients() {
       icon: BadgeIconLight,
     },
     {
-      title: "client name",
-      icon: ClientIconLight,
-    },
-    {
-      title: "city",
-      icon: CityIcon,
-    },
-    {
-      title: "primary contact",
-      icon: PrimaryContactIcon,
-    },
-    {
-      title: "number of sites",
+      title: "Site Name",
       icon: HomeIcon,
     },
     {
-      title: "attachments",
+      title: "Client",
+      icon: ClientIconLight,
+    },
+    {
+      title: "Address",
+      icon: LocationIcon,
+    },
+    {
+      title: "City",
+      icon: CityIconLight,
+    },
+    {
+      title: "Reports",
+      icon: ReportsIcon,
+    },
+    {
+      title: "Attachments",
       icon: AttachmentIcon,
     },
     {
-      title: "actions",
-      icon: ActionIcon,
+      title: "Actions",
+      icon: ActionsIcon,
     },
   ];
 
   const TD1 = new Array(5).fill({
     badge: "Attention",
-    client_name: "XYZ Hospital Trust",
+    site_name: "XYZ Hospital Trust",
+    client: "NHS Trust 1",
+    address: "123 The Road",
     city: "London",
-    primary_contact: "Patricia L. Dubose",
-    sites: "3",
+    reports: "2",
   });
 
   const TD2 = new Array(5).fill({
     badge: "Expired",
-    client_name: "XYZ Hospital Trust",
+    site_name: "XYZ Hospital Trust",
+    client: "NHS Trust 1",
+    address: "123 The Road",
     city: "London",
-    primary_contact: "Patricia L. Dubose",
-    sites: "3",
+    reports: "2",
   });
+
+  useEffect(() => {
+    setSidebarOptions({
+      dashboard: false,
+      client: false,
+      sites: true,
+      schedule: false,
+      jobs: false,
+      messaging: false,
+      settings: false,
+    });
+  }, []);
 
   const tempData = [...TD1, ...TD2];
 
@@ -100,34 +117,16 @@ export default function Clients() {
     setData(tempData);
   };
 
-  const handleChangeSearch = () => {
-    //API call here
-  };
-
-  useEffect(() => {
-    setSidebarOptions({
-      dashboard: false,
-      client: true,
-      sites: false,
-      schedule: false,
-      jobs: false,
-      messaging: false,
-      settings: false,
-    });
-  }, []);
-
   return (
     <div className="py-6 px-8 bg-alice-blue-50">
       <div className="flex justify-between items-center">
-        <div className="flex gap-5 text-poster-blue">
-          <h5 className="cursor-pointer" onClick={() => navigate("/")}>
-            Dashboard
-          </h5>
-          <h5 className="">Client List</h5>
+        <div>
+          <div className="text-poster-blue">Site List</div>
+          <div className="text-pacific-blue">09/02/2024</div>
         </div>
         <div>
-          <button className="bg-pacific-blue text-white py-3 px-5 rounded-full">
-            Add New Client +
+          <button className="bg-hawkes-blue text-pacific-blue py-3 px-5 rounded-full">
+            Add New Site +
           </button>
         </div>
       </div>
@@ -135,8 +134,8 @@ export default function Clients() {
         <div className="flex items-center justify-between px-3 mb-5">
           <div className="flex items-center text-poster-blue gap-5">
             <div className="flex items-center gap-2">
-              <img src={ClientIcon} alt="icon" />
-              Clients (799)
+              <img src={HomeIconLight} alt="icon" />
+              Sites (22)
             </div>
             <ClientsFilters
               handleClickClearFilter={handleClickClearFilter}
@@ -154,8 +153,8 @@ export default function Clients() {
             <input
               placeholder="Search"
               className="py-2 px-3 w-2/3 bg-alice-blue rounded-full placeholder-poster-blue relative"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
+              //   onChange={(e) => setSearch(e.target.value)}
+              //   value={search}
             />
             <div className="absolute right-16">
               <img src={SearchIcon} alt="icon" />
@@ -167,11 +166,13 @@ export default function Clients() {
         <DataTable
           header={tableHeader}
           data={data}
-          editLink="/client-list/edit/1"
-          page="clients"
-          overviewPageLink="/client-list/overview"
+          page="sites"
+          editLink="/client-list/sites/edit/1"
+          overviewPageLink="/client-list/sites/overview/1"
         />
       </div>
     </div>
   );
-}
+};
+
+export default Sites;

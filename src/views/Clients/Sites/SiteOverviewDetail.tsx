@@ -1,21 +1,16 @@
-import JobOverviewCard from "components/Jobs/JobOverviewCard";
-import React, { useEffect } from "react";
-import UserIcon from "../../assets/img/userIconLight.png";
-import { useSidebarOptions } from "components/common/Layout";
-import JobDescriptionIcon from "../../assets/img/jobDescriptionIconLight.png";
 import JobOverviewAccordion from "components/Jobs/JobOverviewAccordion";
-import PdfIcon from "../../assets/img/pdfIcon.png";
-import ReportsIcon from "../../assets/img/reportsIcon.png";
+import JobOverviewCard from "components/Jobs/JobOverviewCard";
+import { useSidebarOptions } from "components/common/Layout";
+import React, { useEffect } from "react";
+import PdfIcon from "../../../assets/img/pdfIcon.png";
+import ReportsIcon from "../../../assets/img/reportsIcon.png";
+import UserIcon from "../../../assets/img/userIcon.png";
+import JobsIcon from "../../../assets/img/jobListIcon.png";
+import ContactIcon from "../../../assets/img/clientIconLight.png";
+import SchemanticsIcon from "../../../assets/img/schemanticsIcon.png";
+import ContactsAccordion from "components/Sites/ContactsAccordion";
 
-export interface CardPropsType {
-  name: string;
-  icon?: string;
-  last_updated?: string;
-  location?: string;
-  badge?: string;
-}
-
-const JobOverview = () => {
+const SiteOverviewDetail = () => {
   const { setSidebarOptions } = useSidebarOptions();
 
   const documents = new Array(10).fill({
@@ -34,9 +29,9 @@ const JobOverview = () => {
     setSidebarOptions({
       dashboard: false,
       client: false,
-      sites: false,
+      sites: true,
       schedule: false,
-      jobs: true,
+      jobs: false,
       messaging: false,
       settings: false,
     });
@@ -46,33 +41,35 @@ const JobOverview = () => {
     <div className="py-6 px-8 bg-alice-blue-50 flex-1 overflow-y-auto">
       <div className="grid grid-cols-12 gap-3">
         <div className="col-span-3">
-          <div className="text-poster-blue text-lg">Job Overview</div>
+          <div className="text-poster-blue text-lg">Site Overview</div>
           <div className="flex items-center mb-3 mt-10">
             <img src={UserIcon} alt="icon" />
             <span className="text-poster-blue text-sm ml-2">
-              Job Information
+              Contact Information
             </span>
           </div>
           <JobOverviewCard />
         </div>
         <div className="col-span-9">
           <div className="flex items-center gap-7 text-poster-blue text-lg">
-            <span>Job Description</span>
             <span>Reports</span>
+            <span>Contacts</span>
             <span>Documents</span>
-            <span>Sites</span>
+            <span>Jobs</span>
+            <span>Schematics</span>
           </div>
-          <div className="mt-10">
-            <div className="flex items-center mb-60">
-              <img src={JobDescriptionIcon} alt="icon" />
-              <span className="text-poster-blue text-sm ml-2">
-                Job Description
-              </span>
-            </div>
+          <div className="mt-14">
             <div className="w-full p-2 rounded-lg text-poster-blue">
               <JobOverviewAccordion
                 title={"Report"}
                 icon={<img src={ReportsIcon} alt="Icon" />}
+                data={documents}
+              />
+            </div>
+            <div className="w-full p-2 rounded-lg text-poster-blue">
+              <ContactsAccordion
+                title={"Contacts"}
+                icon={<img src={ContactIcon} alt="Icon" />}
                 data={documents}
               />
             </div>
@@ -100,23 +97,15 @@ const JobOverview = () => {
             </div>
             <div className="w-full p-2 rounded-lg text-poster-blue">
               <JobOverviewAccordion
-                title={"Sites"}
-                icon={
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                    />
-                  </svg>
-                }
+                title={"Jobs"}
+                icon={<img src={JobsIcon} alt="Icon" />}
+                data={sites}
+              />
+            </div>
+            <div className="w-full p-2 rounded-lg text-poster-blue">
+              <JobOverviewAccordion
+                title={"Schemantics"}
+                icon={<img src={SchemanticsIcon} alt="Icon" />}
                 data={sites}
               />
             </div>
@@ -127,4 +116,4 @@ const JobOverview = () => {
   );
 };
 
-export default JobOverview;
+export default SiteOverviewDetail;

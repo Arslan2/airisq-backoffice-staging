@@ -125,6 +125,7 @@ const Jobs = () => {
     setSidebarOptions({
       dashboard: false,
       client: false,
+      sites: false,
       schedule: false,
       jobs: true,
       messaging: false,
@@ -201,7 +202,13 @@ const Jobs = () => {
         </div>
         <hr className="h-0.5 border-t-0 bg-pale-cornflower-blue" />
 
-        <DataTable header={tableHeader} data={data} page="jobs" />
+        <DataTable
+          header={tableHeader}
+          data={data}
+          page="jobs"
+          editLink="/jobs/edit/1"
+          overviewPageLink="/jobs/overview/1"
+        />
       </div>
     </div>
   );

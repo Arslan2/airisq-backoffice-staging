@@ -10,6 +10,7 @@ const ClientOverview = () => {
     setSidebarOptions({
       dashboard: false,
       client: true,
+      sites: false,
       schedule: false,
       jobs: false,
       messaging: false,

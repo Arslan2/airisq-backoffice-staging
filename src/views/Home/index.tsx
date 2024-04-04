@@ -7,6 +7,7 @@ function Home() {
     setSidebarOptions({
       dashboard: true,
       client: false,
+      sites: false,
       schedule: false,
       jobs: false,
       messaging: false,

@@ -17,7 +17,7 @@ const JobOverviewAccordion = ({
   const [accordionOpen, setAccordionOpen] = useState(false);
 
   return (
-    <div className="py-2">
+    <div className="py-0.5">
       <button
         onClick={() => setAccordionOpen(!accordionOpen)}
         className={`w-full p-2 rounded-t-lg flex justify-between items-center ${
