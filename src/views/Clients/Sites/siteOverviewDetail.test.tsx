@@ -5,15 +5,16 @@ import SiteOverviewDetail from "./SiteOverviewDetail";
 
 describe("Site overview details", () => {
   it("renders correctly", () => {
-    const { getByText, getByRole } = renderWithProviders(
+    const { getByText, getAllByText, getByRole } = renderWithProviders(
       <SiteOverviewDetail />
     );
 
     expect(getByText("Contact Information")).toBeInTheDocument();
-    expect(getByText("Site Name")).toBeInTheDocument();
-    expect(getByText("Job Type")).toBeInTheDocument();
-    expect(getByText("Assigned Engineer")).toBeInTheDocument();
-    expect(getByText("Site Contact")).toBeInTheDocument();
+    expect(getByText("Client Name")).toBeInTheDocument();
+    expect(getByText("Address")).toBeInTheDocument();
+    expect(getAllByText("Contact Number")).toHaveLength(2);
+    expect(getByText("General Email")).toBeInTheDocument();
+    expect(getByText("Assigned Engineers")).toBeInTheDocument();
     expect(getByRole("button", { name: "add-new-contact-btn" }));
     expect(getByText("Reports")).toBeInTheDocument();
 

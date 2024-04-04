@@ -4,14 +4,17 @@ import React, { useEffect } from "react";
 function Home() {
   const { setSidebarOptions } = useSidebarOptions();
   useEffect(() => {
-    setSidebarOptions({
-      dashboard: true,
-      client: false,
-      sites: false,
-      schedule: false,
-      jobs: false,
-      messaging: false,
-      settings: false,
+    setSidebarOptions((prevObject) => {
+      let updatedObject = {};
+      updatedObject["dashboard"] = true;
+
+      Object.keys(prevObject).map((key) => {
+        if (key !== "dashboard") {
+          updatedObject[key] = false;
+        }
+      });
+
+      return updatedObject;
     });
   }, []);
   return <h1 className="text-red-600">Home Screen:</h1>;

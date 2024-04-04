@@ -1,16 +1,14 @@
-import { useSidebarOptions } from "components/common/Layout";
 import React, { useEffect } from "react";
+import ContactOverviewCard from "components/Contacts/ContactOverviewCard";
+import SitesAccordion from "components/Contacts/SitesAccordion";
+import { useSidebarOptions } from "components/common/Layout";
 import PdfIcon from "../../../assets/img/pdfIcon.png";
 import ReportsIcon from "../../../assets/img/reportsIcon.png";
 import UserIcon from "../../../assets/img/userIcon.png";
-import JobsIcon from "../../../assets/img/jobListIcon.png";
-import ContactIcon from "../../../assets/img/clientIconLight.png";
-import SchemanticsIcon from "../../../assets/img/schemanticsIcon.png";
-import ContactsAccordion from "components/Sites/ContactsAccordion";
+import HomeIcon from "../../../assets/img/homeIconLight.png";
 import OverviewAccordion from "components/common/OverviewAccordion";
-import SitesOverviewDetailCard from "components/Sites/SitesOverviewDetailCard";
 
-const SiteOverviewDetail = () => {
+const ContactOverview = () => {
   const { setSidebarOptions } = useSidebarOptions();
 
   const documents = new Array(10).fill({
@@ -28,10 +26,10 @@ const SiteOverviewDetail = () => {
   useEffect(() => {
     setSidebarOptions((prevObject) => {
       let updatedObject = {};
-      updatedObject["sites"] = true;
+      updatedObject["contacts"] = true;
 
       Object.keys(prevObject).map((key) => {
-        if (key !== "sites") {
+        if (key !== "contacts") {
           updatedObject[key] = false;
         }
       });
@@ -44,22 +42,20 @@ const SiteOverviewDetail = () => {
     <div className="py-6 px-8 bg-alice-blue-50 flex-1 overflow-y-auto">
       <div className="grid grid-cols-12 gap-3">
         <div className="col-span-3">
-          <div className="text-poster-blue text-lg">Site Overview</div>
+          <div className="text-poster-blue text-lg">Contact Overview</div>
           <div className="flex items-center mb-3 mt-10">
             <img src={UserIcon} alt="icon" />
             <span className="text-poster-blue text-sm ml-2">
               Contact Information
             </span>
           </div>
-          <SitesOverviewDetailCard />
+          <ContactOverviewCard />
         </div>
         <div className="col-span-9">
           <div className="flex items-center gap-7 text-poster-blue text-lg">
             <span>Reports</span>
-            <span>Contacts</span>
+            <span>Sites</span>
             <span>Documents</span>
-            <span>Jobs</span>
-            <span>Schematics</span>
           </div>
           <div className="mt-14">
             <div className="w-full p-2 rounded-lg text-poster-blue">
@@ -70,9 +66,9 @@ const SiteOverviewDetail = () => {
               />
             </div>
             <div className="w-full p-2 rounded-lg text-poster-blue">
-              <ContactsAccordion
-                title={"Contacts"}
-                icon={<img src={ContactIcon} alt="Icon" />}
+              <SitesAccordion
+                title={"Sites"}
+                icon={<img src={HomeIcon} alt="Icon" />}
                 data={documents}
               />
             </div>
@@ -98,20 +94,6 @@ const SiteOverviewDetail = () => {
                 data={documents}
               />
             </div>
-            <div className="w-full p-2 rounded-lg text-poster-blue">
-              <OverviewAccordion
-                title={"Jobs"}
-                icon={<img src={JobsIcon} alt="Icon" />}
-                data={sites}
-              />
-            </div>
-            <div className="w-full p-2 rounded-lg text-poster-blue">
-              <OverviewAccordion
-                title={"Schemantics"}
-                icon={<img src={SchemanticsIcon} alt="Icon" />}
-                data={sites}
-              />
-            </div>
           </div>
         </div>
       </div>
@@ -119,4 +101,4 @@ const SiteOverviewDetail = () => {
   );
 };
 
-export default SiteOverviewDetail;
+export default ContactOverview;

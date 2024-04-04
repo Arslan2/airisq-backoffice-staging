@@ -12,14 +12,15 @@ import PdfIcon from "../../assets/img/pdfIcon.png";
 import UserIcon from "../../assets/img/userIconLight.png";
 import WordIcon from "../../assets/img/wordIcon.png";
 import ClientsFilters from "components/Clients/ClientsFilters";
+import ReportsIcon from "../../assets/img/reportsIcon.png";
 
-interface ContactsAccordionProps {
+interface ContactOverviewAccordionProps {
   title: string;
   icon: React.ReactElement<React.SVGProps<SVGElement>>;
   data: CardPropsType[];
 }
 
-const ContactsAccordion = ({ title, icon }: ContactsAccordionProps) => {
+const SitesAccordion = ({ title, icon }: ContactOverviewAccordionProps) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
   const [showByBadge, setShowByBadge] = useState(false);
   const [showByBadgeFilter, setShowByBadgeFilter] = useState({
@@ -32,41 +33,25 @@ const ContactsAccordion = ({ title, icon }: ContactsAccordionProps) => {
       title: "badge",
       icon: BadgeIconLight,
     },
-    {
-      title: "Name",
-      icon: UserIcon,
-    },
-    {
-      title: "Client",
-      icon: ClientIconLight,
-    },
-    {
-      title: "Site",
-      icon: HomeIcon,
-    },
-    {
-      title: "Contact Number",
-      icon: HomeIcon,
-    },
-    {
-      title: "Attachments",
-      icon: AttachmentIcon,
-    },
-    {
-      title: "Actions",
-      icon: ActionsIcon,
-    },
+    { title: "Site Name", icon: HomeIcon },
+    { title: "Client", icon: ClientIconLight },
+    { title: "Address", icon: HomeIcon },
+    { title: "City", icon: HomeIcon },
+    { title: "Reports", icon: ReportsIcon },
+    { title: "Attachments", icon: AttachmentIcon },
+    { title: "Actions", icon: ActionsIcon },
   ];
 
-  const contacts = new Array(10).fill({
+  const sites = new Array(10).fill({
     badge: "Attention",
-    name: "Patricia L. Dubose",
-    client: "XYZ Hospital Trust",
-    sites: "St Thomas",
-    contact_number: "01234 555 667",
+    site_name: "XYZ Hospital Trust",
+    client: "NHS Trust 1",
+    address: "123 The Road",
+    city: "London",
+    reports: "2",
   });
 
-  const tempData = contacts;
+  const tempData = sites;
 
   const [tData, setTData] = useState(tempData);
 
@@ -137,7 +122,7 @@ const ContactsAccordion = ({ title, icon }: ContactsAccordionProps) => {
             <div className="flex items-center text-poster-blue gap-5">
               <div className="flex items-center gap-2">
                 <img src={HomeIcon} alt="icon" />
-                Contacts (155)
+                Sites (22)
               </div>
               <ClientsFilters
                 handleClickClearFilter={handleClickClearFilter}
@@ -177,4 +162,4 @@ const ContactsAccordion = ({ title, icon }: ContactsAccordionProps) => {
   );
 };
 
-export default ContactsAccordion;
+export default SitesAccordion;

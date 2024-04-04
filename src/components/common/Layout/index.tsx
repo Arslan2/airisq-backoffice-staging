@@ -29,6 +29,7 @@ interface SidebarProps {
     dashboard: boolean;
     client: boolean;
     sites: boolean;
+    contacts: boolean;
     schedule: boolean;
     jobs: boolean;
     messaging: boolean;
@@ -47,6 +48,7 @@ function Layout() {
     dashboard: true,
     client: false,
     sites: false,
+    contacts: false,
     schedule: false,
     jobs: false,
     messaging: false,
@@ -234,7 +236,9 @@ function Sidebar(props: SidebarProps) {
   useEffect(() => {
     setShowDropdown({
       client:
-        props.sidebarOptions.client || props.sidebarOptions.sites
+        props.sidebarOptions.client ||
+        props.sidebarOptions.sites ||
+        props.sidebarOptions.contacts
           ? true
           : false,
       messaging: false,
@@ -276,6 +280,7 @@ function Sidebar(props: SidebarProps) {
           dropdownOpen={showDropdown.client}
         />
         {props.sidebarOptions.client ||
+        props.sidebarOptions.contacts ||
         (props.sidebarOptions.sites &&
           props.sidebarExpanded &&
           showDropdown.client) ? (
@@ -288,7 +293,12 @@ function Sidebar(props: SidebarProps) {
             >
               Sites
             </li>
-            <li className="ml-10 px-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1">
+            <li
+              className={`pl-16 pr-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1 hover:bg-pacific-blue ${
+                props.sidebarOptions.contacts ? "bg-pacific-blue" : ""
+              }`}
+              onClick={() => navigate("/client-list/contacts")}
+            >
               Contacts
             </li>
           </ul>
