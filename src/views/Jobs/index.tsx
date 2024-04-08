@@ -1,7 +1,6 @@
 import { useSidebarOptions } from "components/common/Layout";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ClientIcon from "../../assets/img/clientsIcon.png";
 import ExcelIcon from "../../assets/img/excelIcon.png";
 import WordIcon from "../../assets/img/wordIcon.png";
 import PdfIcon from "../../assets/img/pdfIcon.png";
@@ -158,6 +157,19 @@ const Jobs = () => {
     setData(tempData);
   };
 
+  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    setData(
+      e.target.value === ""
+        ? tempData
+        : tempData.filter((client) =>
+            client.client_name
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase())
+          )
+    );
+  };
+
   return (
     <div className="py-6 px-8 bg-alice-blue-50">
       <div className="flex justify-between items-center">
@@ -194,7 +206,7 @@ const Jobs = () => {
             <input
               placeholder="Search"
               className="py-2 px-3 w-2/3 bg-alice-blue rounded-full placeholder-poster-blue relative"
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={handleChangeSearch}
               value={search}
             />
             <div className="absolute right-16">

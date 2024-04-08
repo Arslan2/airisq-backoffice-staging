@@ -1,6 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { useSidebarOptions } from "components/common/Layout";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import DocTypeIcon from "../../assets/img/DocTypeIcon.png";
 import ClientIcon from "../../assets/img/clientsIcon.png";
 import LocationIcon from "../../assets/img/locationIcon.png";
@@ -13,6 +13,7 @@ import JobDescriptionIcon from "../../assets/img/jobDescriptionIcon.png";
 
 const EditJob = () => {
   const { setSidebarOptions } = useSidebarOptions();
+  const [fileData, setFileData] = useState<File>();
 
   const gridClass = "grid grid-cols-12 border border-b-pale-cornflower-blue";
   const colSpanClass =
@@ -52,6 +53,11 @@ const EditJob = () => {
       return updatedObject;
     });
   }, []);
+
+  const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setFileData(e.target.files[0]);
+  };
+
   return (
     <div className="py-6 px-8 bg-alice-blue-50 flex-1 overflow-y-auto">
       <div className="text-poster-blue">Edit Job</div>
@@ -65,7 +71,12 @@ const EditJob = () => {
                 <span>{key.split("_").join(" ")}</span>
               </div>
             </div>
-            <div className={`${colSpanClassInput}`}>{jobData[key].value}</div>
+            <div className={`${colSpanClassInput}`}>
+              <input
+                className="w-full outline-none py-1"
+                defaultValue={jobData[key].value}
+              />
+            </div>
           </div>
         ))}
         <div className={`${gridClass}`}>
@@ -158,11 +169,16 @@ const EditJob = () => {
               <span>Job Description</span>
             </div>
           </div>
-          <div className={"col-span-9 px-3 py-5 text-poster-blue text-xs"}>
-            <div className="pb-4">London</div>
-            <div className="py-4">NW28 4PU</div>
-            <div className="py-4">+44 20 7798 4097</div>
-            <div className="pt-4">info@mbe-london.co.uk.</div>
+          <div
+            className={
+              "col-span-9 px-3 text-poster-blue text-xs whitespace-pre-line"
+            }
+          >
+            <textarea
+              className="w-full outline-none py-1 h-40"
+              defaultValue={`\nLondon \n\nNW294PU \n\n+44 20 7798 4097 \n\ninfo@mbe-london.co.uk.`}
+              onChange={(e) => console.log("Event target: ", e.target.value)}
+            />
           </div>
         </div>
         <div className={`${gridClass}`}>
@@ -173,16 +189,26 @@ const EditJob = () => {
             </div>
           </div>
           <div className={`${colSpanClassInput} justify-between`}>
-            <img src={PdfIcon} alt="icon" />
-            <button
-              className="border w-24 h-7 px-1 flex items-center justify-between gap-3 border-poster-blue text-poster-blue"
-              aria-label="upload-button"
+            <div className="flex items-center gap-2">
+              <img src={PdfIcon} alt="icon" /> {fileData?.name}
+            </div>
+            <label
+              htmlFor="file-upload"
+              className="border w-24 h-7 px-1 flex items-center justify-between gap-3 border-poster-blue text-poster-blue cursor-pointer"
             >
               Upload <img src={UploadIcon} alt="icon" />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="file-upload"
+              hidden
+              accept=".pdf, .docx, .xlsx"
+              onChange={handleChangeFile}
+              data-testid="file-upload"
+            />
           </div>
         </div>
-        <div className={`${gridClass}`}>
+        {/* <div className={`${gridClass}`}>
           <div className={`${colSpanClass}`}>
             <div className="flex items-center gap-2">
               <img src={DocTypeIcon} alt="icon" />
@@ -199,7 +225,7 @@ const EditJob = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
