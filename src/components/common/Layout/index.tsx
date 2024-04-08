@@ -236,7 +236,7 @@ function Sidebar(props: SidebarProps) {
   const handleLogout = () => {
     sessionStorage.removeItem("AuthToken");
     navigate("/login");
-  }
+  };
 
   useEffect(() => {
     setShowDropdown({
@@ -284,11 +284,11 @@ function Sidebar(props: SidebarProps) {
           setShowDropdown={handleShowHideDropdown}
           dropdownOpen={showDropdown.client}
         />
-        {props.sidebarOptions.client ||
-        props.sidebarOptions.contacts ||
-        (props.sidebarOptions.sites &&
-          props.sidebarExpanded &&
-          showDropdown.client) ? (
+        {(props.sidebarOptions.client ||
+          props.sidebarOptions.contacts ||
+          props.sidebarOptions.sites) &&
+        props.sidebarExpanded &&
+        showDropdown.client ? (
           <ul className="list-disc list-inside">
             <li
               className={`pl-16 pr-6 py-3 text-poster-blue cursor-pointer hover:underline-offset-1 hover:bg-pacific-blue ${
