@@ -120,6 +120,19 @@ const Sites = () => {
     setData(tempData);
   };
 
+  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    setData(
+      e.target.value === ""
+        ? tempData
+        : tempData.filter((site) =>
+            site.site_name
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase())
+          )
+    );
+  };
+
   return (
     <div className="py-6 px-8 bg-alice-blue-50">
       <div className="flex justify-between items-center">
@@ -128,7 +141,7 @@ const Sites = () => {
           <div className="text-pacific-blue">09/02/2024</div>
         </div>
         <div>
-          <button className="bg-hawkes-blue text-pacific-blue py-3 px-5 rounded-full">
+          <button className="text-white bg-pacific-blue py-3 px-5 rounded-full">
             Add New Site +
           </button>
         </div>
@@ -156,8 +169,8 @@ const Sites = () => {
             <input
               placeholder="Search"
               className="py-2 px-3 w-2/3 bg-alice-blue rounded-full placeholder-poster-blue relative"
-              //   onChange={(e) => setSearch(e.target.value)}
-              //   value={search}
+              onChange={handleChangeSearch}
+              value={search}
             />
             <div className="absolute right-16">
               <img src={SearchIcon} alt="icon" />

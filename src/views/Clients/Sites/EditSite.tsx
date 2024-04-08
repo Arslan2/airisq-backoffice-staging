@@ -1,6 +1,5 @@
 import { useSidebarOptions } from "components/common/Layout";
-import React, { useEffect } from "react";
-import ClientIcon from "../../../assets/img/clientsIcon.png";
+import React, { useEffect, useState } from "react";
 import LocationIcon from "../../../assets/img/locationIcon.png";
 import CityIcon from "../../../assets/img/cityIcon.png";
 import EnvelopIcon from "../../../assets/img/envelopIcon.png";
@@ -12,9 +11,11 @@ import UploadIcon from "../../../assets/img/uploadDocIcon.png";
 import PdfIcon from "../../../assets/img/pdfIcon.png";
 import DocTypeIcon from "../../../assets/img/DocTypeIcon.png";
 import RadioIcon from "../../../assets/img/radioIcon.png";
+import HomeIcon from "../../../assets/img/HomeIcon.png";
 
 const EditSite = () => {
   const { setSidebarOptions } = useSidebarOptions();
+  const [fileData, setFileData] = useState<File>();
 
   const gridClass = "grid grid-cols-12 border border-b-pale-cornflower-blue";
   const colSpanClass =
@@ -23,7 +24,7 @@ const EditSite = () => {
     "col-span-9 px-3 py-5 text-poster-blue flex items-center text-xs";
 
   const siteData = {
-    client_name: { value: "XYZ Hospital Trust", icon: ClientIcon },
+    site_name: { value: "XYZ Hospital Trust", icon: HomeIcon },
     address_1: {
       value: "Gunnersbury House , 1 Chapel Hill",
       icon: LocationIcon,
@@ -51,6 +52,10 @@ const EditSite = () => {
     });
   }, []);
 
+  const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setFileData(e.target.files[0]);
+  };
+
   return (
     <div className="py-6 px-8 bg-alice-blue-50 flex-1 overflow-y-auto">
       <div className="text-poster-blue">Edit Site</div>
@@ -65,7 +70,10 @@ const EditSite = () => {
               </div>
             </div>
             <div className={`${colSpanClassInput}`}>
-              {siteData[key].value}
+              <input
+                className="w-full outline-none py-1"
+                defaultValue={siteData[key].value}
+              />
             </div>
           </div>
         ))}
@@ -91,16 +99,26 @@ const EditSite = () => {
             </div>
           </div>
           <div className={`${colSpanClassInput} justify-between`}>
-            <img src={PdfIcon} alt="icon" />
-            <button
-              className="border w-24 h-7 px-1 flex items-center justify-between gap-3 border-poster-blue text-poster-blue"
-              aria-label="upload-button"
+            <div className="flex items-center gap-2">
+              <img src={PdfIcon} alt="icon" /> {fileData?.name}
+            </div>
+            <label
+              htmlFor="file-upload"
+              className="border w-24 h-7 px-1 flex items-center justify-between gap-3 border-poster-blue text-poster-blue cursor-pointer"
             >
               Upload <img src={UploadIcon} alt="icon" />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="file-upload"
+              hidden
+              accept=".pdf, .docx, .xlsx"
+              onChange={handleChangeFile}
+              data-testid="file-upload"
+            />
           </div>
         </div>
-        <div className={`${gridClass}`}>
+        {/* <div className={`${gridClass}`}>
           <div className={`${colSpanClass}`}>
             <div className="flex items-center gap-2">
               <img src={DocTypeIcon} alt="icon" />
@@ -117,7 +135,7 @@ const EditSite = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className={`${gridClass}`}>
           <div className={`${colSpanClass}`}>
             <div className="flex items-center gap-2">
@@ -128,12 +146,17 @@ const EditSite = () => {
           <div
             className={`${colSpanClassInput} flex- items-center justify-end`}
           >
-            <input
-              type="checkbox"
-              className="h-7 w-7 border border-poster-blue"
-            />
+            <label className="inline-flex items-center me-5 cursor-pointer">
+              <input type="checkbox" value="" className="sr-only peer" />
+              <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-pacific-blue peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-pacific-blue"></div>
+            </label>
           </div>
         </div>
+      </div>
+      <div className="flex items-center justify-end">
+        <button className="mt-4 bg-pacific-blue text-white p-3 rounded-lg">
+          Save
+        </button>
       </div>
     </div>
   );
