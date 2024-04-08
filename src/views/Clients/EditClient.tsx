@@ -142,6 +142,7 @@ export default function EditClient() {
               hidden
               accept=".pdf, .docx, .xlsx"
               onChange={handleChangeFile}
+              data-testid="file-upload"
             />
           </div>
         </div>
