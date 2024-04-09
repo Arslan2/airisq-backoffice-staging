@@ -100,10 +100,6 @@ export default function Clients() {
     setData(tempData);
   };
 
-  const handleChangeSearch = () => {
-    //API call here
-  };
-
   useEffect(() => {
     setSidebarOptions((prevObject) => {
       let updatedObject = {};
@@ -118,6 +114,19 @@ export default function Clients() {
       return updatedObject;
     });
   }, []);
+
+  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    setData(
+      e.target.value === ""
+        ? tempData
+        : tempData.filter((client) =>
+            client.client_name
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase())
+          )
+    );
+  };
 
   return (
     <div className="py-6 px-8 bg-alice-blue-50">
@@ -157,7 +166,7 @@ export default function Clients() {
             <input
               placeholder="Search"
               className="py-2 px-3 w-2/3 bg-alice-blue rounded-full placeholder-poster-blue relative"
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={handleChangeSearch}
               value={search}
             />
             <div className="absolute right-16">
