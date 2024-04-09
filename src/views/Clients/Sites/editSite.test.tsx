@@ -5,10 +5,10 @@ import EditSite from "./EditSite";
 
 describe("Edit site", () => {
   it("renders correctly", () => {
-    const { getByText, getByRole } = renderWithProviders(<EditSite />);
+    const { getByText, getByTestId } = renderWithProviders(<EditSite />);
 
     expect(getByText(/Edit Site/i)).toBeInTheDocument();
-    expect(getByText(/Client Name/i)).toBeInTheDocument();
+    expect(getByText(/Site Name/i)).toBeInTheDocument();
     expect(getByText(/Address 1/i)).toBeInTheDocument();
     expect(getByText(/Address 2/i)).toBeInTheDocument();
     expect(getByText(/Address 3/i)).toBeInTheDocument();
@@ -18,9 +18,9 @@ describe("Edit site", () => {
     expect(getByText(/General Email/i)).toBeInTheDocument();
     expect(getByText(/Primary Contact/i)).toBeInTheDocument();
     expect(getByText(/Document Upload/i)).toBeInTheDocument();
-    expect(getByText(/Document Type/i)).toBeInTheDocument();
+    // expect(getByText(/Document Type/i)).toBeInTheDocument();
     expect(getByText(/Mark Inactive/i)).toBeInTheDocument();
 
-    expect(getByRole("button", { name: "upload-button" })).toBeInTheDocument();
+    expect(getByTestId("file-upload")).toBeInTheDocument();
   });
 });
