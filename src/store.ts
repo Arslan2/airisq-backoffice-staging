@@ -1,4 +1,3 @@
-/* eslint-disable import/no-import-module-exports */
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from 'sagas';
 import rootReducer from 'slices';

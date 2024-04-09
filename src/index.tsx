@@ -1,4 +1,3 @@
-/* eslint-disable import/no-import-module-exports */
 import { Provider } from 'react-redux';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
